@@ -7,7 +7,7 @@
 | difficulty:int               |
 +------------------------------+
 | getname():char[]             |
-| mainMenu():int               |
+| mainMenu(name:char):int      |
 | game(difficulty:int)         |
 | options(difficulty:int)      |
 | about()                      |
@@ -18,7 +18,7 @@
 
 +----------------------+
 |                      |
-|      mainMenu()      |
+| mainMenu(name:char)  |
 +----------------------+
 |  choice:int          |
 |                      |
