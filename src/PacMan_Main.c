@@ -3,6 +3,11 @@
 
 #define DELAY 50000
 
+struct pacMan
+{
+    
+};
+
 void getDirection(int *x, int *y)
 {
   int c;
@@ -54,19 +59,19 @@ int main(int argc, char *argv[]) {
   // Variables
   //--------------------
  int x = 0, y = 0;
- int max_y = 0, max_x = 0;
+ int max_y = 20, max_x = 26;
  int next_x = 0;
  int next_y = 0;
  int direction_x = 1;
  int direction_y = 0;
- char PacMan = '<';
+ char PacManSprite = '<';
 
 //initilize screen
  initscr();
  noecho();
  curs_set(FALSE);
 
- getmaxyx(stdscr, max_y, max_x);
+ //getmaxyx(stdscr, max_y, max_x);
 
  nodelay(stdscr, TRUE);
 
@@ -74,9 +79,9 @@ int main(int argc, char *argv[]) {
  while(1) {
  clear();
 
- PacMan = pacManOrientation(direction_x, direction_y);
+ PacManSprite = pacManOrientation(direction_x, direction_y);
 
- mvprintw(y, x, "%c", PacMan);
+ mvprintw(y, x, "%c", PacManSprite);
 
  refresh();
 
