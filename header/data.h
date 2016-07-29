@@ -20,6 +20,7 @@ typedef struct Monster
   int y_position;
   int x_direction;
   int y_direction;
+  int alive;
   char sprite;
 } Monster;
 
