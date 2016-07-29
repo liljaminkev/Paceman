@@ -47,7 +47,10 @@ typedef struct GameBoard
   int numFruit3; //number of thrid
   int numFruit4; //number of fourth
   int pacman;    //number of pacman
-  int monster    //number of monsters
+  int monster;    //number of monsters
+  int pause_state;
+  int run_state;
+  
 } GameBoard;
 
 #endif
