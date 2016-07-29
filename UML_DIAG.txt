@@ -1,18 +1,20 @@
-+------------------------+
-|                        |
-|     Main()             |
-+------------------------+
-| choice:int             |
-| name:char[]            |
-| difficulty:int         |
-+------------------------+
-| getname():char[]       |
-| mainMenu():int         |
-| game(difficulty:int)   |
-| options(dif:int):int   |
-| about()                |
-|                        |
-+------------------------+
++------------------------------+
+|                              |
+|           Main()             |
++------------------------------+
+| choice:int                   |
+| name:char[]                  |
+| difficulty:int               |
++------------------------------+
+| getname():char[]             |
+| mainMenu():int               |
+| game(difficulty:int)         |
+| options(difficulty:int)      |
+| about()                      |
+|                              |
++------------------------------+
+
+
 
 +----------------------+
 |                      |
@@ -35,7 +37,7 @@
 +---------------------------------------+
 | getUserInput():int                    |
 | loadCustomMap()                       |
-| changeDifficulty(diffaculty:int):int  |
+| changeDifficulty(difficulty:int):int  |
 | clearHighScore()                      |
 | changeControls()                      |
 | displayOptions()                      |
@@ -56,3 +58,26 @@
 | demoGame()          |
 | highScore()         |
 +---------------------+
+
++------------------------------------------------------+
+|                                                      |
+|            gameController(difficulty:int)            |
++------------------------------------------------------+
+|  pacman:struct                                       |
+|  levelNumber:int                                     |
+|  fileName:char                                       |
+|  *fp:FILE                                            |
++------------------------------------------------------+
+|  game(difficulty:int, pacman:struct, *fp:FILE)       |
+|  highScore(pacman.score)                             |
+|  endGame()                                           |
+|                                                      |
+|                                                      |
+|                                                      |
+|                                                      |
+|                                                      |
+|                                                      |
+|                                                      |
+|                                                      |
+|                                                      |
++------------------------------------------------------+
