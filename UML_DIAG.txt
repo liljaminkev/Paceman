@@ -59,25 +59,46 @@
 | highScore()         |
 +---------------------+
 
-+------------------------------------------------------+
-|                                                      |
-|            gameController(difficulty:int)            |
-+------------------------------------------------------+
-|  pacman:struct                                       |
-|  levelNumber:int                                     |
-|  fileName:char                                       |
-|  *fp:FILE                                            |
-+------------------------------------------------------+
-|  game(difficulty:int, pacman:struct, *fp:FILE)       |
-|  highScore(pacman.score)                             |
-|  endGame()                                           |
-|                                                      |
-|                                                      |
-|                                                      |
-|                                                      |
-|                                                      |
-|                                                      |
-|                                                      |
-|                                                      |
-|                                                      |
-+------------------------------------------------------+
++----------------------------------------------------------+
+|                                                          |
+|            gameController(difficulty:int)                |
++----------------------------------------------------------+
+|  pacman:struct                                           |
+|  levelNumber:int                                         |
++----------------------------------------------------------+
+|  game(difficulty:int, *pacman:struct):int                |
+|  highScore(pacman.score)                                 |
+|  endGame()                                               |
+|                                                          |
+|                                                          |
+|                                                          |
+|                                                          |
++----------------------------------------------------------+
+
++--------------------------------------------------------+
+|                                                        |
+|game(difficulty:int, Pacman:struct):int                 |
++--------------------------------------------------------+
+|monsters[]:struct                                       |
+|fruit1[]:struct                                         |
+|fruit2[]:struct                                         |
+|fruit3[]:struct                                         |
+|fruit4[]:struct                                         |
+|direction:struct                                        |
+|gameBoard:struct                                        |
++--------------------------------------------------------+
+|displayGameboard()                                      |
+|getUserInput(direction):direction                       |
+|setDirection(direction,PacMan)                          |
+|setLocation(Pacman)                                     |
+|setDirection(monsters)                                  |
+|setDirection(monsters)                                  |
+|displaySprite(pacman)                                   |
+|displaySprite(monster)                                  |
+|monsterEatsPacMan(pacman,monsters)                      |
+|pacmanEatsMonster(pacman,monsters)                      |
+|pacmanEatsFruit(pacman,fruit1,fruit2,fruit3, fruit4)    |
+|monsterRespawn(monster)                                 |
+|                                                        |
+|                                                        |
++--------------------------------------------------------+
