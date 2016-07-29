@@ -93,7 +93,6 @@
 |setLocation(Pacman)                                     |
 |calculateMonsterNextMove(PacMan.locationX)              |
 |setDirection(monsters)                                  |
-|setDirection(monsters)                                  |
 |setlocation(monsters)                                   |
 |displaySprite(pacman)                                   |
 |displaySprite(monster)                                  |
@@ -101,8 +100,6 @@
 |pacmanEatsMonster(pacman,monsters)                      |
 |pacmanEatsFruit(pacman,fruit1,fruit2,fruit3, fruit4)    |
 |monsterRespawn(monster)                                 |
-|                                                        |
-|                                                        |
 |resetGame(pacman,monster)                               |
 |endLevel(fruit1/fruitCounterFromGameBoard)              |
 +--------------------------------------------------------+
