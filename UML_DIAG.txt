@@ -1,0 +1,58 @@
++------------------------+
+|                        |
+|     Main()             |
++------------------------+
+| choice:int             |
+| name:char[]            |
+| difficulty:int         |
++------------------------+
+| getname():char[]       |
+| mainMenu():int         |
+| game(difficulty:int)   |
+| options(dif:int):int   |
+| about()                |
+|                        |
++------------------------+
+
++----------------------+
+|                      |
+|      mainMenu()      |
++----------------------+
+|  choice:int          |
+|                      |
++----------------------+
+|  displayMainMenu()   |
+|  getUserInput():int  |
+|                      |
++----------------------+
+
++---------------------------------------+
+|                                       |
+|       option(difficulty:int):int      |
++---------------------------------------+
+| choice:int                            |
+| difficulty:int                        |
++---------------------------------------+
+| getUserInput():int                    |
+| loadCustomMap()                       |
+| changeDifficulty(diffaculty:int):int  |
+| clearHighScore()                      |
+| changeControls()                      |
+| displayOptions()                      |
+|                                       |
+|                                       |
++---------------------------------------+
+
++---------------------+
+|                     |
+|      about()        |
++---------------------+
+| choice:int          |
+|                     |
++---------------------+
+| displayAbout()      |
+| getUserInput():int  |
+| howToPlay()         |
+| demoGame()          |
+| highScore()         |
++---------------------+
