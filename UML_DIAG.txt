@@ -1,18 +1,18 @@
-+------------------------------+
-|                              |
-|           Main()             |
-+------------------------------+
-| choice:int                   |
-| name:char[]                  |
-| difficulty:int               |
-+------------------------------+
-| getName():char[]             |
-| mainMenu(name:char):int      |
-| game(difficulty:int)         |
-| options(difficulty:int)      |
-| about()                      |
-|                              |
-+------------------------------+
++--------------------------------+
+|                                |
+|           Main()               |
++--------------------------------+
+| choice:int                     |
+| name:char[]                    |
+| difficulty:int                 |
++--------------------------------+
+| getName():char[]               |
+| mainMenu(name:char):int        |
+| gameController(difficulty:int) |
+| options(difficulty:int)        |
+| about()                        |
+|                                |
++--------------------------------+
 
 
 +-------------------------+

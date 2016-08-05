@@ -3,11 +3,6 @@
 
 #define DELAY 50000
 
-struct pacMan
-{
-    
-};
-
 void getDirection(int *x, int *y)
 {
   int c;
