@@ -21,6 +21,7 @@ typedef struct GameBoard
     int monster;    //number of monsters
     int pause_state;
     int run_state;
+	int test;
 
 } GameBoard;
 
