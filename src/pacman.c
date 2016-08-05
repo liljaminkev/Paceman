@@ -10,7 +10,7 @@ void pacmanInitialize(PacMan a)
   a.y_start = 0;
 }
 
-void MovePacman(PacMan a)
+void MovePacman(PacMan *a)
 {
   int next_x, next_y;
 
@@ -30,7 +30,7 @@ void MovePacman(PacMan a)
   player1.y_position += player1.y_direction;
 }
 
-char pacManOrientation(int dirX, int dirY)
+char pacManOrientation(int *dirX, int *dirY)
 {
   char orientation = '@';
 
@@ -54,6 +54,7 @@ int getPacmanDirection1(int *x, int *y, int a)
     *y = 0;
     return 1;
   }
+
   else if (a == right)
   {
     *x = 1;
@@ -87,6 +88,7 @@ int getPacmanDirection2(int *x, int *y, int d)
     *y = 0;
     return 1;
   }
+
   else if (d == ';')
   {
     *x = 1;
