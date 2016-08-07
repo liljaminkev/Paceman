@@ -1,16 +1,20 @@
-#include "pacman.h"
+#include "../header/singlePlayerGameController.h"
+#include "../header/pacman.h"
+#include <ncurses.h>
+#include <unistd.h>
 
 void pacmanInitialize(PacMan *a)
 {
-  a->lives = 1;
-  a->x_position = 0;
-  a->y_position = 0;
-  a->x_direction = 1;
-  a->y_direction = 0;
-  a->y_start = 0;
-  a->x_start = 0;
-  a->sprite = '<';
-  a->score = 0;
+    a->lives = 1;
+    a->x_position = 0;
+    a->y_position = 0;
+    a->x_direction = 0;
+    a->y_direction = 0;
+    a->y_start = 0;
+    a->x_start = 0;
+    a->sprite = '<';
+    a->score = 0;
+    a->quit = 1;
 }
 
 void movePacman(PacMan *player)
@@ -33,70 +37,66 @@ void movePacman(PacMan *player)
   player->y_position += player->y_direction;
 }
 
-char getPacmanDirection1(PacMan *a, int keyInput)
+void getPacmanDirection1(int *x_dir, int *y_dir, int input, char *sprite)
 {
-  if (keyInput == player1_left)
+  if (input == player1_left)
   {
-    a->x_position = -1;
-    a->y_position = 0;
-    return '>';
+    *x_dir = -1;
+    *y_dir = 0;
+    *sprite = '>';
   }
 
-  else if (keyInput == player1_right)
+  else if (input == player1_right)
   {
-    a->x_position = 1;
-    a->y_position = 0;
-    return '<';
+    *x_dir = 1;
+    *y_dir = 0;
+    *sprite = '<';
   }
 
-  else if (keyInput == player1_down)
+  else if (input == player1_down)
   {
-    a->x_position = 0;
-    a->y_position = 1;
-    return '^';
+    *x_dir = 0;
+    *y_dir = 1;
+    *sprite = '^';
   }
 
-  else if (keyInput == player1_up)
+  else if (input == player1_up)
   {
-    a->x_position = 0;
-    a->y_position = -1;
-    return 'V';
+    *x_dir = 0;
+    *y_dir = -1;
+    *sprite = 'V';
   }
 
-  else
-  return a->sprite;
 }
-
-char getPacmanDirection2(PacMan *a,int keyInput)
+/*
+void getPacmanDirection2(int *x_dir, int *y_dir, int keyInput, char *sprite)
 {
   if (keyInput == player2_left)
   {
-    a->x_position = -1;
-    a->y_position = 0;
-    return '>';
+    *x_dir = -1;
+    *y_dir = 0;
+    *sprite = '>';
   }
 
   else if (keyInput == player2_right)
   {
-    a->x_position = 1;
-    a->y_position = 0;
-    return '<';
+    *x_dir = 1;
+    *y_dir = 0;
+    *sprite = '<';
   }
 
   else if (keyInput == player2_down)
   {
-    a->x_position = 0;
-    a->y_position = 1;
-    return '^';
+    *x_dir = 0;
+    *y_dir = 1;
+    *sprite = '^';
   }
 
   else if (keyInput == player2_up)
   {
-    a->x_position = 0;
-    a->y_position = -1;
-    return 'V';
+    *x_dir = 0;
+    *y_dir = -1;
+    *sprite = 'V';
   }
 
-  else
-  return a->sprite;
-}
+}*/

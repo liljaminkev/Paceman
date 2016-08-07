@@ -1,52 +1,65 @@
-#include "singlePlayerGameController.h"
-#include "pacman.h"
+#include "../header/singlePlayerGameController.h"
 #include <ncurses.h>
 #include <unistd.h>
 #define DELAY2 50000
 
-int startGame(PacMan *a)
+int max_y = 20;
+int max_x = 26;
+
+int quit(char a)
 {
-    char k;
-    mvprintw(a->y_position, a->x_position, "%c", a->sprite);
-    k = getch();
-    k = getDirection1(a, k);
-    return k;
+    if (a == 'q')
+    return 0;
+    else
+    return 1;
 }
 
 int singlePlayerGameController()
 {
+
     int exitCondition;
     PacMan player1;
     pacmanInitialize(&player1); //set pacman initial state;
 
-    exitCondition = singlePlayerGameInstance(&player1);
+    player1 = singlePlayerGameInstance(player1);
 
-    return exitCondition;
+    mvprintw(0, 0, "%c", player1.sprite);
+    getch();
+
+    return 0;
 }
 
-int singlePlayerGameInstance(PacMan *p1)
+char startGame(int x, int y, char sprite)
 {
-    int max_y = 20, max_x = 26; //game board size
+    char k;
+    clear();
+    mvprintw(y, x, "%c", sprite);
+    refresh();
+    k = getch();
+    return k;
+}
+
+PacMan singlePlayerGameInstance(PacMan p1)
+{
+    //int max_y = 20, max_x = 26; //game board size
     char keypress;              //userinput from keyboard
-    keypress = startGame(p1); //display gameboard and wait for input
+    keypress = startGame(p1.x_position, p1.y_position, p1.sprite); //display gameboard and wait for input
     nodelay(stdscr, TRUE);        //once input recived turn off delay from keyboard
 
     do{
+        movePacman(&p1);
+        getPacmanDirection1(&p1.x_direction, &p1.y_direction, keypress, &p1.sprite);
         clear();
-
-        mvprintw(p1->y_position, p1->x_position, "%c", p1->sprite); //print p
+        mvprintw(p1.y_position, p1.x_position, "%c", p1.sprite); //print p
         refresh();
 
         usleep(DELAY2);
 
         keypress = getch();
 
-        p1->sprite = getDirection1(&p1, keypress);
+        p1.quit = quit(keypress);
 
-        movePacman(p1);
-
-
-    }while(keypress != 'q');
-
-    return 0;
+    }while(0 != p1.quit);
+    nodelay(stdscr, FALSE);
+    return p1;
 }
