@@ -1,115 +1,102 @@
-#include "../header/pacman.h"
+#include "pacman.h"
 
-void pacmanInitialize(PacMan a)
+void pacmanInitialize(PacMan *a)
 {
-  a.lives = 1;
-  a.x_pos = 0;
-  a.y_pos = 0;
-  a.x_direction = 1;
-  a.y_direction = 0;
-  a.y_start = 0;
+  a->lives = 1;
+  a->x_position = 0;
+  a->y_position = 0;
+  a->x_direction = 1;
+  a->y_direction = 0;
+  a->y_start = 0;
+  a->x_start = 0;
+  a->sprite = '<';
+  a->score = 0;
 }
 
-void MovePacman(PacMan *a)
+void movePacman(PacMan *player)
 {
   int next_x, next_y;
 
-  next_x = player1.x_position + player1.x_direction;
-  next_y = player1.y_position + player1.y_direction;
+  next_x = player->x_position + player->x_direction;
+  next_y = player->y_position + player->y_direction;
 
 
   if (next_x > max_x || next_x < 0)
-      player1.x_direction = 0;
+      player->x_direction = 0;
 
-  player1.x_position += player1.x_direction;
+  player->x_position += player->x_direction;
 
 
   if (next_y > max_y || next_y < 0)
-      player1.y_direction = 0;
+      player->y_direction = 0;
 
-  player1.y_position += player1.y_direction;
+  player->y_position += player->y_direction;
 }
 
-char pacManOrientation(int *dirX, int *dirY)
+char getPacmanDirection1(PacMan *a, int keyInput)
 {
-  char orientation = '@';
-
-  if (dirX == 1)
-  orientation = '<';
-  if (dirX==-1)
-  orientation = '>';
-  if (dirY==-1)
-  orientation = 'V';
-  if (dirY==1)
-  orientation = '^';
-  return orientation;
-}
-
-
-int getPacmanDirection1(int *x, int *y, int a)
-{
-  if (a == left)
+  if (keyInput == player1_left)
   {
-    *x = -1;
-    *y = 0;
-    return 1;
+    a->x_position = -1;
+    a->y_position = 0;
+    return '>';
   }
 
-  else if (a == right)
+  else if (keyInput == player1_right)
   {
-    *x = 1;
-    *y = 0;
-    return 2;
+    a->x_position = 1;
+    a->y_position = 0;
+    return '<';
   }
 
-  else if (a == down)
+  else if (keyInput == player1_down)
   {
-    *x = 0;
-    *y = 1;
-    return 3;
+    a->x_position = 0;
+    a->y_position = 1;
+    return '^';
   }
 
-  else if (a == up)
+  else if (keyInput == player1_up)
   {
-    *x = 0;
-    *y = -1;
-    return 4;
+    a->x_position = 0;
+    a->y_position = -1;
+    return 'V';
   }
 
   else
-  return a;
+  return a->sprite;
 }
 
-int getPacmanDirection2(int *x, int *y, int d)
+char getPacmanDirection2(PacMan *a,int keyInput)
 {
-  if (d == 'k')
+  if (keyInput == player2_left)
   {
-    *x = -1;
-    *y = 0;
-    return 1;
+    a->x_position = -1;
+    a->y_position = 0;
+    return '>';
   }
 
-  else if (d == ';')
+  else if (keyInput == player2_right)
   {
-    *x = 1;
-    *y = 0;
-    return 2;
+    a->x_position = 1;
+    a->y_position = 0;
+    return '<';
   }
 
-  else if (d == 'l')
+  else if (keyInput == player2_down)
   {
-    *x = 0;
-    *y = 1;
-    return 3;
+    a->x_position = 0;
+    a->y_position = 1;
+    return '^';
   }
 
-  else if (d == 'o')
+  else if (keyInput == player2_up)
   {
-    *x = 0;
-    *y = -1;
-    return 4;
+    a->x_position = 0;
+    a->y_position = -1;
+    return 'V';
   }
 
   else
-  return d;
+  return a->sprite;
 }
