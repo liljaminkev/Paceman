@@ -68,7 +68,7 @@ void getPacmanDirection1(int *x_dir, int *y_dir, int input, char *sprite)
   }
 
 }
-/*
+
 void getPacmanDirection2(int *x_dir, int *y_dir, int keyInput, char *sprite)
 {
   if (keyInput == player2_left)
@@ -99,4 +99,4 @@ void getPacmanDirection2(int *x_dir, int *y_dir, int keyInput, char *sprite)
     *sprite = 'V';
   }
 
-}*/
+}
