@@ -1,32 +1,32 @@
-+------------------------------+
-|                              |
-|           Main()             |
-+------------------------------+
-| choice:int                   |
-| name:char[]                  |
-| difficulty:int               |
-+------------------------------+
-| getname():char[]             |
-| mainMenu():int               |
-| game(difficulty:int)         |
-| options(difficulty:int)      |
-| about()                      |
-|                              |
-+------------------------------+
++--------------------------------+
+|                                |
+|           Main()               |
++--------------------------------+
+| choice:int                     |
+| name:char[]                    |
+| difficulty:int                 |
++--------------------------------+
+| getName():char[]               |
+| mainMenu(name:char):int        |
+| gameController(difficulty:int) |
+| options(difficulty:int)        |
+| about()                        |
+|                                |
++--------------------------------+
 
 
++-------------------------+
+|                         |
+| mainMenu(name:char):int |
++-------------------------+
+|  choice:int             |
+|                         |
++-------------------------+
+|  displayMainMenu()      |
+|  getUserInput():int     |
+|                         |
++-------------------------+
 
-+----------------------+
-|                      |
-|      mainMenu()      |
-+----------------------+
-|  choice:int          |
-|                      |
-+----------------------+
-|  displayMainMenu()   |
-|  getUserInput():int  |
-|                      |
-+----------------------+
 
 +---------------------------------------+
 |                                       |
@@ -35,15 +35,58 @@
 | choice:int                            |
 | difficulty:int                        |
 +---------------------------------------+
+| displayOptions()                      |
 | getUserInput():int                    |
 | loadCustomMap()                       |
 | changeDifficulty(difficulty:int):int  |
 | clearHighScore()                      |
 | changeControls()                      |
-| displayOptions()                      |
 |                                       |
 |                                       |
 +---------------------------------------+
+
++------------------------------------+
+|                                    |
+|     loadCustomMap()                |
++------------------------------------+
+|  choice:int                        |
+|  MapName:char                      |
++------------------------------------+
+|  displayLoadMapMenu()              |
+|  getMapName()                      |
+|  copyMapToMapsFolder(MapName)      |
+|                                    |
+|                                    |
++------------------------------------+
+
++------------------------------------+
+|                                    |
+|changeDifficulty(difficulty:int):int|
++------------------------------------+
+|  choice:int                        |
+|                                    |
++------------------------------------+
+|  displayDifficulties()             |
+|  getUserInput()                    |
+|                                    |
+|                                    |
+|                                    |
++------------------------------------+
+
++------------------------------------+
+|                                    |
+|           changeControls()         |
++------------------------------------+
+|  choice:int                        |
+|                                    |
++------------------------------------+
+|  GetControlFile()                  |
+|  displayCurrentControls()          |
+|  getNewControls()                  |
+|  saveControls()                    |
+|                                    |
++------------------------------------+
+
 
 +---------------------+
 |                     |
@@ -56,8 +99,26 @@
 | getUserInput():int  |
 | howToPlay()         |
 | demoGame()          |
-| highScore()         |
+| displayHighScore()  |
 +---------------------+
+
+
+
++------------------------------------+
+|                                    |
+|             howToPlay()            |
++------------------------------------+
+|  choice:int                        |
+|                                    |
++------------------------------------+
+|  displayInstructions()             |
+|  getUserInput()                    |
+|                                    |
+|                                    |
+|                                    |
++------------------------------------+
+
+
 
 +----------------------------------------------------------+
 |                                                          |
@@ -71,10 +132,9 @@
 |  endGame()                                               |
 |                                                          |
 |                                                          |
-|                                                          |
-|                                                          |
 +----------------------------------------------------------+
-
+                          |
+                          V
 +--------------------------------------------------------+
 |                                                        |
 |game(difficulty:int, Pacman:struct):int                 |
@@ -93,6 +153,35 @@
 |setLocation(Pacman)                                     |
 |calculateMonsterNextMove(PacMan.locationX)              |
 |setDirection(monsters)                                  |
+|setlocation(monsters)                                   |
+|displaySprite(pacman)                                   |
+|displaySprite(monster)                                  |
+|monsterEatsPacMan(pacman,monsters)                      |
+|pacmanEatsMonster(pacman,monsters)                      |
+|pacmanEatsFruit(pacman,fruit1,fruit2,fruit3, fruit4)    |
+|monsterRespawn(monster)                                 |
+|resetGame(pacman,monster)                               |
+|endLevel(fruit1/fruitCounterFromGameBoard)              |
++--------------------------------------------------------+
+
+
++--------------------------------------------------------+
+|                                                        |
+|                      demoGame()                        |
++--------------------------------------------------------+
+|monsters[]:struct                                       |
+|fruit1[]:struct                                         |
+|fruit2[]:struct                                         |
+|fruit3[]:struct                                         |
+|fruit4[]:struct                                         |
+|direction:struct                                        |
+|gameBoard:struct                                        |
++--------------------------------------------------------+
+|displayGameboard()                                      |
+|getUserInput(direction):direction                       |
+|setDirection(direction,PacMan)                          |
+|setLocation(Pacman)                                     |
+|calculateMonsterNextMove(PacMan.locationX)              |
 |setDirection(monsters)                                  |
 |setlocation(monsters)                                   |
 |displaySprite(pacman)                                   |
@@ -101,8 +190,6 @@
 |pacmanEatsMonster(pacman,monsters)                      |
 |pacmanEatsFruit(pacman,fruit1,fruit2,fruit3, fruit4)    |
 |monsterRespawn(monster)                                 |
-|                                                        |
-|                                                        |
 |resetGame(pacman,monster)                               |
 |endLevel(fruit1/fruitCounterFromGameBoard)              |
 +--------------------------------------------------------+
