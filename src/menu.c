@@ -12,7 +12,7 @@ int n_choices = sizeof(choices) / sizeof(char *);
 
 void getName()
 {
-char mesg[]="Enter your name:     ";
+char mesg[]="Enter name:     ";
 char str[80];
 int row,col;
 initscr();
