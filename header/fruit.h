@@ -2,12 +2,6 @@
 #define FRUIT_H
 #include "pacman.h"
 
-//fruit characters
-extern char fruit1;
-extern char fruit2;
-extern char fruit3;
-extern char fruit4;
-
 //array of characters
 typedef char Fruit;
 

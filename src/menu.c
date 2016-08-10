@@ -1,6 +1,7 @@
 #include "../header/menu.h"
 int startx = 0;
 int starty = 0;
+
 char *choices[] = {
 			"Start Game",
 			"Options",
@@ -108,7 +109,7 @@ void print_menu(WINDOW *menu_win, int highlight)
     box(menu_win, 0, 0);
     for(i = 0; i < n_choices; ++i)
     {
-    if(highlight == i + 1) 			/* High light the present choice */
+    if(highlight == i + 1) 			// High light the present choice
         {
             wattron(menu_win, A_REVERSE);
             mvwprintw(menu_win, y, x, "%s", choices[i]);
