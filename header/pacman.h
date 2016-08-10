@@ -2,18 +2,6 @@
 #define PACMAN_H
 #include "singlePlayerGameController.h"
 
-//player 1 controls
-extern int player1_up;
-extern int player1_down;
-extern int player1_left;
-extern int player1_right;
-
-//player 2 controls
-extern char player2_up;
-extern char player2_down;
-extern char player2_left;
-extern char player2_right;
-
 //player informaiton
 typedef struct PacMans
 {
