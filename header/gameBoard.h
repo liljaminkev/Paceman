@@ -24,4 +24,5 @@ typedef struct GameBoard
 	int test;
 } GameBoard;
 
+
 #endif

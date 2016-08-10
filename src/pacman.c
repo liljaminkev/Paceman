@@ -37,15 +37,19 @@ void movePacman(PacMan *player)
   next_x = player->x_position + player->x_direction;
   next_y = player->y_position + player->y_direction;
 
+  if (next_x > max_x)
+  player->x_position = 0;
 
-  if (next_x > max_x || next_x < 0)
-      player->x_direction = 0;
+  else if ( next_x < 0)
+  player->x_position = max_x;
 
   player->x_position += player->x_direction;
 
 
-  if (next_y > max_y || next_y < 0)
-      player->y_direction = 0;
+  if (next_y > max_y)
+  player->y_position = 0;
+  else if (next_y < 0)
+  player->y_position = max_y;
 
   player->y_position += player->y_direction;
 }

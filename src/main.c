@@ -3,6 +3,7 @@
 #include "../header/menu.h"
 #include <ncurses.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #define DELAY1 50000
 
@@ -15,7 +16,8 @@ int main()
 {
     //local variables
     int choice;
-/* old code
+
+    /* old code
     //turn off echo and initilize ncurses screen
     initscr();
     noecho();
@@ -25,7 +27,8 @@ int main()
 
     exitCode = singlePlayerGameController();
 
-    endwin();*/
+    endwin();
+    */
 
     getName();
 

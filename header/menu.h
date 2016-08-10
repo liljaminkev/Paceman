@@ -6,12 +6,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-
 #define WIDTH 40
 #define HEIGHT 10
-
-//menu choices
-
 
 //function used to render window with choices
 void print_menu(WINDOW *, int);

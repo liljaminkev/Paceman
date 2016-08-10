@@ -1,6 +1,6 @@
 #ifndef PACMAN_H
 #define PACMAN_H
-#include "singlePlayerGameController.h"
+//#include "singlePlayerGameController.h"
 
 //player informaiton
 typedef struct PacMans
