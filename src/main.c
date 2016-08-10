@@ -30,7 +30,7 @@ int main()
     getName();
 
     do{
-    choice = //menu goes here;
+    choice = mainMenu();
 
     switch(choice)
     {
