@@ -24,5 +24,5 @@ typedef struct GameBoard
 	int test;
 } GameBoard;
 
-
+void pauseGame(Gameboard);
 #endif
