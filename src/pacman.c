@@ -3,6 +3,19 @@
 #include <ncurses.h>
 #include <unistd.h>
 
+//player 1 controls
+int player1_up = 'w';
+int player1_down = 's';
+int player1_left = 'a';
+int player1_right = 'd';
+
+//player 2 controls
+char player2_up = 'o';
+char player2_down = 'l';
+char player2_left = 'k';
+char player2_right = ';';
+
+
 void pacmanInitialize(PacMan *a)
 {
     a->lives = 1;
@@ -68,7 +81,7 @@ void getPacmanDirection1(int *x_dir, int *y_dir, int input, char *sprite)
   }
 
 }
-/*
+
 void getPacmanDirection2(int *x_dir, int *y_dir, int keyInput, char *sprite)
 {
   if (keyInput == player2_left)
@@ -99,4 +112,4 @@ void getPacmanDirection2(int *x_dir, int *y_dir, int keyInput, char *sprite)
     *sprite = 'V';
   }
 
-}*/
+}

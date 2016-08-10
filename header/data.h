@@ -22,7 +22,6 @@ typedef struct GameBoard
     int pause_state;
     int run_state;
 	int test;
-
 } GameBoard;
 
 #endif

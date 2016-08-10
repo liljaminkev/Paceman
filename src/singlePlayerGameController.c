@@ -23,9 +23,6 @@ int singlePlayerGameController()
 
     player1 = singlePlayerGameInstance(player1);
 
-    mvprintw(0, 0, "%c", player1.sprite);
-    getch();
-
     return 0;
 }
 
