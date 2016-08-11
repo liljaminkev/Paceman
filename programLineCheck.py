@@ -32,6 +32,9 @@ def fileCount(fileName):
 		totalLines += 1
 	return totalLines
 
+if(len(sys.argv) != 2):
+	print("Provide directory name as argument. '.' if it is current directory.")
+	quit()
 
 for root, dirs, files in os.walk(sys.argv[1]):
 	tempTotal = 0
