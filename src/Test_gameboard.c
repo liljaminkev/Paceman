@@ -66,6 +66,8 @@ int main ()
     struct GameBoard gameboard;
     struct PacMan pacman;
 
+    gameboard.numFruit1=0;
+
 
     fp = fopen("stage1.txt", "r");
 
