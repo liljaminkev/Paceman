@@ -3,9 +3,9 @@
 #include "pacman.h"
 
 //array of characters
-typedef char Fruit;
+typedef char fruit;
 
 //functions to manipulate characters
-void intFruit(int, int, char, Fruit[][26]);
-void eatFruit(PacMan*, Fruit[][26]);
+void intFruit(int, int, char, fruit[][26]);
+void eatFruit(PacMan*, fruit[][26]);
 #endif
