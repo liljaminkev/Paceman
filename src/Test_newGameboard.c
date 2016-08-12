@@ -48,11 +48,13 @@ void displayBoard(struct GameBoard gameboard)
 
 int main ()
 {
+    struct GameBoard gameboard;
+
+//all this code below should be in a function
+
     FILE* fp = NULL;
     char c;
     int i,j;
-
-    struct GameBoard gameboard;
 
     fp = fopen("stage1.txt", "r");
     if (!fp)
@@ -70,12 +72,19 @@ int main ()
        if(c=='-' || c=='*' || c=='&' || c=='$')
         fruit[i][j]=c;
 
+        //add if clause for monsters.
+        //add new if clause for pacman
+
     }
     }
 
     fruit[0][0]=0;
     fruit[0][1]=0;
-    displayBoard(gameboard);
     fclose(fp);
+
+//end of function
+
+    displayBoard(gameboard);
+
     return 0;
 }
