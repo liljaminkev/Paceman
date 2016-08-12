@@ -1,4 +1,5 @@
-#ifndef MONSTER_H 
+#ifndef MONSTER_H
+#define MONSTER_H
 typedef struct Monster
 {
     int start_positionX;
@@ -12,3 +13,6 @@ typedef struct Monster
     int speed;
     char sprite;
 } Monster;
+
+void monsterRespawn(Monster [], int);
+#endif
