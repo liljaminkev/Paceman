@@ -12,3 +12,17 @@ void monsterRespawn(Monster mon[], int numMonsters)
         }
     }
 }
+
+void monsterInitialize(Monster *a)
+{
+    a->start_positionX=0;
+    a->start_positionY=0;
+    a->x_position=0;
+    a->y_position=0;
+    a->x_direction=0;
+    a->y_direction=0;
+    a->state=0;
+    a->alive=0;
+    a->sprite='M';
+
+}
