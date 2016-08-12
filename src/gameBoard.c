@@ -36,7 +36,7 @@ void gameBoardLoad()
     if (!fp)
         exit(1);
 
-    for ( i = 0; i < 20; i++ )
+    for ( i = 0; i < 21; i++ )
     { for (j=0; j<27; j++)
   	{
         c = getc(fp);
