@@ -1,5 +1,7 @@
 #include "..header/gameBoard.h"
 #include "..header/pacman.h"
+#include "..header/monster.h"
+#include "..header/fruit.h"
 #include "stdio.h"
 #include "stdlib.h"
 
@@ -29,26 +31,56 @@ void gameBoardLoad()
 
     struct GameBoard gameboard;
     struct PacMan pacman;
-
+    struct Monster monster;
 
     fp = fopen("stage1.txt", "r");
-
     if (!fp)
         exit(1);
 
-    for ( i = 0; i < 21; i++ )
-    { for (j=0; j<27; j++)
-  	{
+//    gameBoardInitialize(&gameboard);
+//    pacmanInitialize(&pacman);
+//    monsterInitialize(&monster);
+
+//    gameboard.numFruit1=0;
+//    gameboard.numFruit2=0;
+//    gameboard.numFruit3=0;
+//    gameboard.numFruit4=0;
+
+    for ( i = 0; i < 20; i++ )
+    { for (j=0; j<26; j++)
+	  {
         c = getc(fp);
-	    gameboard.map[i][j]=c;
-		if(c=='-')
-		     gameboard.numFruit1++;
+        if(c=='3' || c=='\n' || c==' ' || c=='M')
+            gameboard.map[i][j]=c;
+        else
+            gameboard.map[i][j]=0;
 
-		if(c=='<')
-		{ pacman.x_start=i;
-		  pacman.y_start=j;}
+       if(c=='-' || c=='*' || c=='&' || c=='$')
+        fruit[i][j]=c;
 
-    }}
+    if(c=='-')
+        gameboard.numFruit1++;
 
-     fclose(fp);
+         if(c=='*')
+            gameboard.numFruit2++;
+
+            if(c=='&')
+      		     gameboard.numFruit3++;
+
+               if(c=='$')
+                  gameboard.numFruit4++;
+
+      if(c=='<')
+	   	{ gameboard.map[i][j]=c;
+          pacman.x_start=i;
+          pacman.y_start=j;}
+
+      if(c=='M')
+        { gameboard.map[i][j]=c;
+          monster.start_positionX=i;
+          monster.start_positionY=j;}
+
+    }
+    }
+    fclose(fp);
 }
