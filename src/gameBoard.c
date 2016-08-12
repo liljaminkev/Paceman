@@ -29,8 +29,6 @@ void gameBoardLoad()
 
     struct GameBoard gameboard;
     struct PacMan pacman;
-
-
     fp = fopen("stage1.txt", "r");
 
     if (!fp)
@@ -42,12 +40,23 @@ void gameBoardLoad()
         c = getc(fp);
 	    gameboard.map[i][j]=c;
 		if(c=='-')
-		     gameboard.numFruit1++;
+		     gameboard.numFruit1++; //count how many fruit1
+
+    if(c=='O')
+         gameboard.numFruit2++; //count how many fruit2
+
+    if(c=='&')
+          gameboard.numFruit3++; //count how many fruit3
+
+    if(c=='@')
+          gameboard.numFruit3++; //count how many fruit4
 
 		if(c=='<')
-		{ pacman.x_start=i;
+		{ pacman.x_start=i;    //set initial position of PacMan
 		  pacman.y_start=j;}
 
+    if(c=='M')
+        gameboard.monster++; //count how many monster
     }}
 
      fclose(fp);
