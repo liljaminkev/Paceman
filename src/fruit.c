@@ -2,7 +2,7 @@
 #include "../header/pacman.h"
 
 //fruit characters
-char fruit1 = '-';
+char fruit1 = '.';
 char fruit2 = 'O';
 char fruit3 = '&';
 char fruit4 = '@';
