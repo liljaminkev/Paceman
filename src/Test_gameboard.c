@@ -41,7 +41,6 @@ void gameBoardInitialize(GameBoard *a)
 	a->wall='3';
 	a->monster='M';
 	a->fruit1='-';
-	a->map[20][26];
 	a->numFruit1=10;
 	a->pacman=1;
 	a->pause_state=0;
@@ -76,7 +75,7 @@ int main ()
         exit(1);
 
     for ( i = 0; i < 20; i++ )
-    { for (j=0; j<27; j++)
+    { for (j=0; j<26; j++)
 	{
         c = getc(fp);
 	    gameboard.map[i][j]=c;
