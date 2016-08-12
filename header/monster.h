@@ -14,5 +14,6 @@ typedef struct Monster
     char sprite;
 } Monster;
 
+void monsterInitialize(Monster*);
 void monsterRespawn(Monster [], int);
 #endif
