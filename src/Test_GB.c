@@ -10,55 +10,51 @@
 
 int main()
 {
-    //load and init gameboard
+    //declare vars
     GameBoard gb;
     PacMan p1;
     Fruit f[20][26];
     int result;
     char fileName[50];
     int winx, winy;
-    int ii, jj;
 
-    for ( ii = 0; ii <20; ii++ )
-    {
-        for (jj = 0; jj<26; jj++)
-        {
-            f[ii][jj] = 0;
-      }
-    }
+    //init vars
 
+    initFruit(f);
+    pacmanInitialize(&p1);
+    gameBoardInitialize(&gb);
 
-
+    //set up windows
     initscr();
     noecho();
     curs_set(FALSE);
 
     getmaxyx(stdscr, winy, winx);
 
-    WINDOW *win1 = newwin(20, 28, 0, 0);
+    WINDOW *gameArea = newwin(20, 28, 0, 0);
+    WINDOW *score = newwin(20,15, 0, 28);
 
 
-    pacmanInitialize(&p1);
-
+    //load gameboard data
     fileNameCreater(fileName, 1);
-
-    gameBoardInitialize(&gb);
-
     result = gameBoardLoad(&gb, &p1, f, fileName);
 
+    //declare monsters from gameboard and init
     Monster mon[gb.numMonster];
 
-    int i;
-    for(i = 0; i < gb.numMonster; i++)
-    {
-        monsterInitialize(&mon[i]);
-    }
+    //monsterInitialize(mon, gb.numMonster, &gb);
 
-    draw_borders(win1);
-    displayBoard(&gb, win1);
-    //displayFruit(f, win1);
+    //display gameboards
+    draw_borders(gameArea);
+    displayBoard(&gb, gameArea);
+    displayFruit(f, gameArea);
+    displayPacman(&p1, gameArea);
+    displayMonsters(mon, gb.numMonster, gameArea);
 
-    wrefresh(win1);
+    draw_borders(score);
+
+    wrefresh(gameArea);
+    wrefresh(score);
     sleep(10);
     endwin();
 

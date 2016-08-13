@@ -1,6 +1,7 @@
 #ifndef PACMAN_H
 #define PACMAN_H
 //#include "singlePlayerGameController.h"
+#include <ncurses.h>
 
 //player informaiton
 typedef struct PacMans
@@ -22,5 +23,6 @@ void pacmanNextMove(PacMan*);
 void movePacman(PacMan*);
 void getPacmanDirection1(int*, int*, int, char*);
 void getPacmanDirection2(int*, int*, int, char*);
+void displayPacman(PacMan *, WINDOW *);
 
 #endif

@@ -15,6 +15,11 @@ char player2_down = 'l';
 char player2_left = 'k';
 char player2_right = ';';
 
+void displayPacman(PacMan *player, WINDOW *levelBuffer)
+{
+    mvwprintw(levelBuffer, player->x_position+1, player->y_position+1, "%c", player->sprite);
+}
+
 
 void pacmanInitialize(PacMan *a)
 {
