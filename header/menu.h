@@ -2,7 +2,7 @@
 #define MENU_H
 
 #include <stdio.h>
-//#include <ncurses.h>
+#include <ncurses.h>
 #include <string.h>
 #include <stdlib.h>
 

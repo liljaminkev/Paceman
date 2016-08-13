@@ -1,5 +1,6 @@
 #include "../header/fruit.h"
 #include "../header/pacman.h"
+#include <ncurses.h>
 
 //fruit characters
 char fruit1 = '-';
@@ -10,7 +11,7 @@ char fruit4 = '@';
 //for customizing fruit types
 void setFruit1(char input)
 {
-    fruit1 = input
+    fruit1 = input;
 }
 
 void setFruit2(char input)
@@ -54,4 +55,22 @@ void eatFruit(PacMan *p1, Fruit f1[][26])
         }
 
     }
+}
+void displayFruit(Fruit fruit[][26], WINDOW *levelBuffer)
+{
+    int i,j;
+    char character;
+
+    for ( i = 0; i <20; i++ )
+    {
+        for (j = 0; j<26; j++)
+        {
+            if (fruit[i][j] != 0)
+            {
+                character = fruit[i][j];
+                mvwprintw(levelBuffer, i+2, j+2, "%c", character);
+            }
+      }
+    }
+
 }

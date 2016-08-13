@@ -26,6 +26,7 @@ void fileNameCreater(char *file, int level)
     sprintf(alevel, "%d", level);
     strcpy(file, partialPath);
     strcat(file, alevel);
+    strcat(file, ".txt");
 }
 
 int singlePlayerGameController()
@@ -97,6 +98,7 @@ PacMan singlePlayerGameEngine(PacMan p1, char *fileName)
         p1.quit = quit(keypress);
 
     }while(0 != p1.quit);
+
     nodelay(stdscr, FALSE);
     return p1;
 }
