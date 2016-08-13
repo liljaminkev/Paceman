@@ -42,20 +42,43 @@ int main()
     //declare monsters from gameboard and init
     Monster mon[gb.numMonster];
 
-    //monsterInitialize(mon, gb.numMonster, &gb);
+    int i;
+    for(i = 0; i < gb.numMonster; i++)
+    {
+        monsterInitialize(gb.numMonster, &mon[i], &gb);
+    }
+
+
 
     //display gameboards
     draw_borders(gameArea);
     displayBoard(&gb, gameArea);
     displayFruit(f, gameArea);
     displayPacman(&p1, gameArea);
-    displayMonsters(mon, gb.numMonster, gameArea);
+
+    displayMonsters(mon[0], gb.numMonster, gameArea);
 
     draw_borders(score);
 
     wrefresh(gameArea);
     wrefresh(score);
-    sleep(10);
+    sleep(2);
+
+    moveMonster(mon);
+
+    clear();
+    draw_borders(gameArea);
+    displayBoard(&gb, gameArea);
+    displayFruit(f, gameArea);
+    displayPacman(&p1, gameArea);
+    displayMonsters(mon[0], gb.numMonster, gameArea);
+
+    draw_borders(score);
+
+    wrefresh(gameArea);
+    wrefresh(score);
+    sleep(2);
+
     endwin();
 
 

@@ -17,7 +17,8 @@ typedef struct Monster
     char sprite;
 } Monster;
 
-//void monsterInitialize(Monster *, int, GameBoard *);
+
 void monsterRespawn(Monster *, int);
-void displayMonsters(Monster *, int, WINDOW *);
+void displayMonsters(Monster, int, WINDOW *);
+void moveMonster(Monster *);
 #endif

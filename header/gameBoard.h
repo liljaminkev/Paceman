@@ -1,7 +1,7 @@
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
-#include "pacman.h"
 #include "monster.h"
+#include "pacman.h"
 #include "fruit.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +13,7 @@ typedef struct Direction
     int y;
 } Direction;
 
-typedef struct GameBoards
+typedef struct GameBoard
 {
     char wall;          //char to hold wall
     char fruit[4];      //char array to hold fruit
@@ -33,5 +33,5 @@ void gameBoardInitialize(GameBoard *);
 void displayBoard(GameBoard *, WINDOW *);
 int gameBoardLoad(GameBoard *, PacMan *, Fruit [][26], char []);
 int numBytesRead(FILE *);
-
+void monsterInitialize(int, struct Monster *, GameBoard *);
 #endif

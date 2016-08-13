@@ -171,3 +171,36 @@ int numBytesRead(FILE *ptr)
 
     return diffrence;
 }
+void monsterInitialize(int numMons, Monster *mon, GameBoard *board)
+{
+    int i, j, k;
+    //for(i = 0; i < board.numMonster; i++)
+    //{
+        mon->start_positionX = -1;
+        mon->x_direction = 0;
+        mon->y_direction = 0;
+        mon->state = 0;
+        mon->alive = 0;
+        mon->sprite = 'M';
+
+        //find monster's X Y
+        for(j = 0; j < 18; j++)
+        {
+            for(k = 0; k < 26; k++)
+            {
+                if (board->map[j][k] == 'M')
+                {
+                    mon->start_positionX = k;
+                    mon->start_positionY = j;
+                    board->map[j][k] = ' ';
+                    mon->x_position = k;
+                    mon->y_position = j;
+                    break;
+                }
+            }
+            if(mon->start_positionX != -1)
+            break;
+        }
+    //}
+
+}
