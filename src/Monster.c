@@ -4,8 +4,8 @@
 
 void moveMonster(Monster *mon)
 {
-    mon[0].y_position = mon[0].y_position-3;
-    mon[0].x_position = mon[0].x_position+4;
+    mon[0].y_position = mon[0].y_position-1;
+    mon[0].x_position = mon[0].x_position;
 }
 
 void displayMonsters(Monster mon, int numMonsters, WINDOW *gameArea)

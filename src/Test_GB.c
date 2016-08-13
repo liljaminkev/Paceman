@@ -64,6 +64,8 @@ int main()
     wrefresh(score);
     sleep(2);
 
+for (i=0; i < 3; i++)
+{
     moveMonster(mon);
 
     clear();
@@ -78,6 +80,8 @@ int main()
     wrefresh(gameArea);
     wrefresh(score);
     sleep(2);
+}
+
 
     endwin();
 
