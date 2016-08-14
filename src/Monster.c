@@ -1,6 +1,4 @@
 #include "../header/monster.h"
-#include "../header/gameBoard.h"
-#include <ncurses.h>
 
 void moveMonster(Monster *mon)
 {

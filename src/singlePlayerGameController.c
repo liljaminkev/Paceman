@@ -1,9 +1,4 @@
 #include "../header/singlePlayerGameController.h"
-#include "../header/pacman.h"
-#include <ncurses.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
 #define DELAY2 50000
 
 int max_y = 20;

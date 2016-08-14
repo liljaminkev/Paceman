@@ -1,11 +1,4 @@
-#include "../header/gameBoard.h"
-#include "../header/pacman.h"
-#include "../header/monster.h"
-#include "../header/fruit.h"
-#include "stdio.h"
-#include <stdlib.h>
-#include <ncurses.h>
-
+#include "../header/gameboard.h"
 
 //function to draw boarder around windows
 void draw_borders(WINDOW *screen) {
@@ -171,6 +164,7 @@ int numBytesRead(FILE *ptr)
 
     return diffrence;
 }
+/*
 void monsterInitialize(int numMons, Monster *mon, GameBoard *board)
 {
     int i, j, k;
@@ -204,3 +198,4 @@ void monsterInitialize(int numMons, Monster *mon, GameBoard *board)
     //}
 
 }
+*/

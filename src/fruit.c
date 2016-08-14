@@ -1,6 +1,5 @@
 #include "../header/fruit.h"
-#include "../header/pacman.h"
-#include <ncurses.h>
+
 
 //fruit characters
 char fruit[] = {'.', '-', 'o', 'O' } ;

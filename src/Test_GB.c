@@ -1,12 +1,13 @@
-#include "../header/gameBoard.h"
+#include "../header/gameboard.h"
 #include "../header/pacman.h"
 #include "../header/monster.h"
 #include "../header/fruit.h"
 #include "../header/singlePlayerGameController.h"
-#include "stdio.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <ncurses.h>
 #include <unistd.h>
+#include <stdio.h>
 
 int main()
 {
@@ -99,7 +100,7 @@ nodelay(stdscr, TRUE);        //once input recived turn off delay from keyboard
 
 do{
     clear();
-    movePacman(&p1);
+    movePacman(&p1, &gb);
     draw_borders(gameArea);
     draw_borders(score);
     displayBoard(&gb, gameArea);

@@ -1,7 +1,9 @@
-#include "../header/singlePlayerGameController.h"
 #include "../header/pacman.h"
-#include <ncurses.h>
-#include <unistd.h>
+int MAX_Y = 17;
+int MAX_X = 26;
+int MIN_Y = 0;
+int MIN_X = 0;
+
 
 //player 1 controls
 int player1_up = 'w';
@@ -20,7 +22,6 @@ void displayPacman(PacMan *player, WINDOW *levelBuffer)
     mvwprintw(levelBuffer, player->y_position+1, player->x_position+1, "%c", player->sprite);
 }
 
-
 void pacmanInitialize(PacMan *a)
 {
     a->lives = 1;
@@ -35,26 +36,29 @@ void pacmanInitialize(PacMan *a)
     a->quit = 1;
 }
 
-void movePacman(PacMan *player)
+void movePacman(PacMan *player, GameBoard *gb)
 {
   int next_x, next_y;
 
   next_x = player->x_position + player->x_direction;
   next_y = player->y_position + player->y_direction;
 
-  if (next_x > 25)
-  player->x_position = -1;
-
-  else if ( next_x < -1)
-  player->x_position = 25;
+  if (next_x > MAX_X)
+  player->x_position = MIN_X;
+  else if (next_x < MIN_X)
+  player->x_position = MAX_X;
+  else if (next_x == gb->wall)
+  player->x_direction = 0;
 
   player->x_position += player->x_direction;
 
 
-  if (next_y > 17)
+  if (next_y > MAX_Y)
+  player->y_position = MIN_Y;
+  else if (next_y < MIN_Y)
+  player->y_position = MAX_Y;
+  else if (next_y == gb->wall)
   player->y_position = 0;
-  else if (next_y < 0)
-  player->y_position = 17;
 
   player->y_position += player->y_direction;
 }

@@ -1,9 +1,9 @@
 #ifndef MONSTER_H
 #define MONSTER_H
 #include <ncurses.h>
-#include "gameBoard.h"
 
-typedef struct Monster
+
+typedef struct
 {
     int start_positionX;
     int start_positionY;
