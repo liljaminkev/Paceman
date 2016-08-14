@@ -82,6 +82,43 @@ for (i=0; i < 3; i++)
     sleep(2);
 }
 
+//test pacman movement
+char keypress;              //userinput from keyboard
+
+//ensure filename gets to function
+/*if (test == 2)
+{
+    clear();
+    mvprintw(0, 0, "%s", fileName);
+    refresh();
+    getch();
+}
+*/
+//keypress = startGame(p1.x_position, p1.y_position, p1.sprite); //display gameboard and wait for input
+nodelay(stdscr, TRUE);        //once input recived turn off delay from keyboard
+
+do{
+    clear();
+    movePacman(&p1);
+    draw_borders(gameArea);
+    draw_borders(score);
+    displayBoard(&gb, gameArea);
+    displayFruit(f, gameArea);
+    displayPacman(&p1, gameArea);
+    wrefresh(gameArea);
+    wrefresh(score);
+
+    sleep(1);
+
+    keypress = getch();
+    getPacmanDirection1(&p1.x_direction, &p1.y_direction, keypress, &p1.sprite);
+    p1.quit = quit(keypress);
+
+}while(0 != p1.quit);
+
+nodelay(stdscr, FALSE);
+//return p1;
+
 
     endwin();
 

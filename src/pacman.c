@@ -17,7 +17,7 @@ char player2_right = ';';
 
 void displayPacman(PacMan *player, WINDOW *levelBuffer)
 {
-    mvwprintw(levelBuffer, player->x_position+1, player->y_position+1, "%c", player->sprite);
+    mvwprintw(levelBuffer, player->y_position+1, player->x_position+1, "%c", player->sprite);
 }
 
 
@@ -26,7 +26,7 @@ void pacmanInitialize(PacMan *a)
     a->lives = 1;
     a->x_position = 0;
     a->y_position = 0;
-    a->x_direction = 0;
+    a->x_direction = 1;
     a->y_direction = 0;
     a->y_start = 0;
     a->x_start = 0;
@@ -42,19 +42,19 @@ void movePacman(PacMan *player)
   next_x = player->x_position + player->x_direction;
   next_y = player->y_position + player->y_direction;
 
-  if (next_x > max_x)
-  player->x_position = 0;
+  if (next_x > 25)
+  player->x_position = -1;
 
-  else if ( next_x < 0)
-  player->x_position = max_x;
+  else if ( next_x < -1)
+  player->x_position = 25;
 
   player->x_position += player->x_direction;
 
 
-  if (next_y > max_y)
+  if (next_y > 17)
   player->y_position = 0;
   else if (next_y < 0)
-  player->y_position = max_y;
+  player->y_position = 17;
 
   player->y_position += player->y_direction;
 }

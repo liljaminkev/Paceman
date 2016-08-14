@@ -147,8 +147,8 @@ int gameBoardLoad(GameBoard *gameboard, PacMan *pacman, Fruit fruitArr[][26], ch
                {
                    pacman->x_start=i;
                    pacman->y_start=j;
-                   pacman->x_position = i;
-                   pacman->y_position = j;
+                   pacman->x_position = j;
+                   pacman->y_position = i;
                    gameboard->numPacman++;
                    gameboard->map[i][j] = ' ';
                }
