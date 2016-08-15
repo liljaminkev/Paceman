@@ -1,9 +1,5 @@
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
-#include "monster.h"
-#include "pacman.h"
-#include "fruit.h"
-#include "singlePlayerGameController.h"
 #include <ncurses.h>
 
 typedef struct

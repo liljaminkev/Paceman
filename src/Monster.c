@@ -1,7 +1,3 @@
-#include "../header/pacman.h"
-#include "../header/singlePlayerGameController.h"
-#include "../header/gameBoard.h"
-#include "../header/fruit.h"
 #include "../header/monster.h"
 #include <ncurses.h>
 

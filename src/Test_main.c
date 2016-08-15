@@ -11,6 +11,10 @@
 
 int main()
 {
-    
+    initscr();
+    clear();
+    noecho();
+    singlePlayerGameController();
+    endwin();
     return 0;
 }

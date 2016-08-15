@@ -1,8 +1,4 @@
-#include "../header/pacman.h"
-#include "../header/singlePlayerGameController.h"
 #include "../header/gameBoard.h"
-#include "../header/fruit.h"
-#include "../header/monster.h"
 #include <ncurses.h>
 
 
@@ -153,7 +149,7 @@ int gameBoardLoad(GameBoard *gameboard, char fileName[])
     if (gameboard->numPacman == 1)
     return 1;
     else
-    return -1;
+    return -2;
 }
 
 int numBytesRead(FILE *ptr)

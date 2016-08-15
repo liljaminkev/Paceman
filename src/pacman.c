@@ -2,7 +2,7 @@
 #include <ncurses.h>
 
 int MAX_Y = 17;
-int MAX_X = 26;
+int MAX_X = 25;
 int MIN_Y = 0;
 int MIN_X = 0;
 
@@ -61,7 +61,7 @@ void pacmanSetInitialPoint(PacMan *player, char map[][26])
 
                 player->x_position = player->x_start;
                 player->y_position = player->y_start;
-                map[j][k] = 0;
+                map[j][k] = ' ';
                 break;
             }
         }
