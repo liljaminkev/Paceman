@@ -43,7 +43,7 @@ int main()
         break;
 
         case 2:
-        //options();
+        options();
         break;
 
         case 3:

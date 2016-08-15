@@ -22,16 +22,16 @@ void singlePlayer();
 void twoPlayer();
 void multiPlayer();
 
-// void options();
-// void loadCustomMap();
-// void changeDifficulty();
-// void clearHighScore();
-// void changeControls();
+void options();
+void loadCustomMap();
+void changeDifficulty();
+void clearHighScore();
+void changeControls();
 
 // void aboutTheGame();
 // void howToPlay();
 // void demoGame();
 // void highScore();
 
-void quit();
+//void quit();
 #endif

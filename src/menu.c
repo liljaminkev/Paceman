@@ -198,3 +198,127 @@ void startGame()
         startGame();
         endwin();
     }
+
+    void options()
+    {
+        initscr();
+        clear();
+        mvprintw(1,3,"OPTIONS:");
+        mvprintw(3,3,"1. Load Custom Maps");
+        mvprintw(4,3,"2. Difficulty Mode");
+        mvprintw(5,3,"3. Clear High Score");
+        mvprintw(6,3,"4. Change Controls");
+        mvprintw(7,3,"5. Return to main menu");
+        char mesg[]="Enter your choice: ";  
+        char str[80];   
+        mvprintw(10,3, "%s", mesg);                         
+        getstr(str);
+        int numbr = atoi(str);
+        
+        switch(numbr)
+        {
+            case 1:
+            loadCustomMap();
+            break;
+
+            case 2:
+            changeDifficulty();
+            break;
+
+            case 3:
+            clearHighScore();
+            break;
+
+            case 4:
+            changeControls();  
+            break;
+
+            case 5:
+            mainMenu();
+            break;
+
+            default:
+            break;
+        }
+        endwin();
+    }
+
+    void loadCustomMap()
+    {
+        initscr();
+        clear();
+        //mvprintw(4,3, "This function will load Custom maps"); 
+        // Include code to implement Load Custom Maps
+
+        mvprintw(8,3, "Press any key to return to Options     ");  //Move this statement accordingly
+        char str[80];
+        getstr(str);
+        options();
+        endwin();
+    }
+
+    void changeDifficulty()
+    {
+        initscr();
+        clear();
+        mvprintw(1,3,"OPTIONS:");
+        //mvprintw(3,3,"1. Easy");
+        //mvprintw(4,3,"2. Medium");
+        //mvprintw(5,3,"3. Hard");          
+        mvprintw(6,3,"4. Return to Options");    //Include functions for above 3 options
+        char mesg[]="Enter your choice: ";
+        char str[80];
+        mvprintw(9,3, "%s", mesg);                          
+        getstr(str);
+        int numbr = atoi(str);
+        
+        switch(numbr)
+        {
+            case 1:
+            //easyGameController();
+            break;
+
+            case 2:
+            //mediumGameController();
+            break;
+
+            case 3:
+            //hardGameController();
+            break;
+
+            case 4:
+            options();
+            break;
+
+            default:
+            break;
+        }
+        endwin();
+    }
+    void clearHighScore()
+    {
+        initscr();
+        clear();
+        //mvprintw(4,3, "This function will allow the user to clear highscore");
+        // Include code to implement Clear Highscore
+
+        mvprintw(8,3, "Press any key to return to Options     ");  // Move this statement accordingly
+        char str[80];
+        getstr(str);
+        options();
+        endwin();
+    }
+
+    void changeControls()  
+    {
+        initscr();
+        clear();
+        //mvprintw(4,3, "This function will allow the user to change controls");
+        // Include code to implement Change Controls
+
+        mvprintw(8,3, "Press any key to return to Options     ");   // Move this statement accordingly
+        char str[80];
+        getstr(str);
+        options();
+        endwin();
+    }
