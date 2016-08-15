@@ -2,7 +2,7 @@
 #define MENU_H
 
 #include <stdio.h>
-//#include <ncurses.h>
+#include <ncurses.h>
 #include <string.h>
 #include <stdlib.h>
 
@@ -16,4 +16,22 @@ void print_menu(WINDOW *, int);
 void getName();
 
 int mainMenu();
+
+void startGame();
+void singlePlayer();
+void twoPlayer();
+void multiPlayer();
+
+// void options();
+// void loadCustomMap();
+// void changeDifficulty();
+// void clearHighScore();
+// void changeControls();
+
+// void aboutTheGame();
+// void howToPlay();
+// void demoGame();
+// void highScore();
+
+void quit();
 #endif

@@ -85,7 +85,6 @@ do
             choice = highlight;
             break;
         default:
-            //mvprintw(24, 0, "Charcter pressed is = %3d Hopefully it can be printed as '%c'", c, c);
             refresh();
             break;
     }
@@ -97,7 +96,6 @@ clrtoeol();
 refresh();
 endwin();
 return choice;
-
 }
 
 void print_menu(WINDOW *menu_win, int highlight)
@@ -121,3 +119,82 @@ void print_menu(WINDOW *menu_win, int highlight)
     }
     wrefresh(menu_win);
 }
+
+void startGame() 
+    {
+        initscr();
+        clear();
+        mvprintw(2,3, "START GAME");
+        mvprintw(4,3, "1. Single player");
+        mvprintw(5,3, "2. Two player");
+        mvprintw(6,3, "3. Multi player");
+        mvprintw(7,3, "4. Return to main menu");
+        char mesg[]="Enter your choice: ";
+        char str[80];   
+        mvprintw(10,3, "%s", mesg);                         
+        getstr(str);
+        int numbr = atoi(str);
+        
+        switch(numbr)
+        {
+            case 1:
+            singlePlayer();
+            break;
+
+            case 2:
+            twoPlayer();
+            break;
+
+            case 3:
+            multiPlayer();
+            break;
+
+            case 4:
+            mainMenu();
+            break;
+
+            default:
+            break;
+        }
+        refresh();
+        endwin();
+    }
+
+    void singlePlayer()
+    {
+        initscr();
+        clear();
+        //mvprintw(1,3,"Single player");
+        // Include code to implement singlePlayer game controller
+        mvprintw(3,3, "Press any key to return to Start Game     ");  // Move this statement accordingly
+        char str[80];
+        getstr(str);
+        startGame();
+        endwin();
+    }
+
+    void twoPlayer()
+    {
+        initscr();
+        clear();
+        //mvprintw(1,3,"Two player");
+        // Include code to implement twoPlayer game controller
+        mvprintw(3,3, "Press any key to return to Start Game     ");  //Move this statement accordingly
+        char str[80];
+        getstr(str);
+        startGame();
+        endwin();
+    }
+
+    void multiPlayer()
+    {
+        initscr();
+        clear();
+        //mvprintw(1,3," Multiplayer");
+        // Include code to implement multiPlayer game controller 
+        mvprintw(3,3, "Press any key to return to Start Game     ");  //Move this statement accordingly
+        char str[80];
+        getstr(str);
+        startGame();
+        endwin();
+    }

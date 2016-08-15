@@ -1,4 +1,4 @@
-#include "../header/singlePlayerGameController.h"
+//#include "../header/singlePlayerGameController.h"
 #include "../header/pacman.h"
 #include "../header/menu.h"
 #include <ncurses.h>
@@ -38,7 +38,8 @@ int main()
     switch(choice)
     {
         case 1:
-        singlePlayerGameController();
+        //singlePlayerGameController();
+        startGame();
         break;
 
         case 2:
@@ -50,7 +51,8 @@ int main()
         break;
 
         case 4: //set screen back to defualt and exit game
-        choice = 0;
+        //choice = 0;
+        //quit();
         break;
 
         default:
