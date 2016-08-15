@@ -1,5 +1,5 @@
-#ifndef _BACK_H
-#define _BACK_H
+#ifndef BACK_H
+#define BACK_H
 #include <ncurses.h>
 
 //---------------TypeDefs------------------
@@ -63,7 +63,7 @@ void moveMonster(Monster *);
 
 void pacmanInitialize(PacMan *);
 void pacmanNextMove(PacMan *);
-void movePacman(PacMan*, GameBoard*);
+void movePacman(PacMan*, char);
 void getPacmanDirection1(int *, int *, int, char *);
 void getPacmanDirection2(int *, int *, int, char *);
 
@@ -79,7 +79,6 @@ void fileNameCreater(char *, int);
 void setFruit(char, int);
 void initFruit(Fruit [][26]);
 void eatFruit(PacMan *, Fruit [][26]);
-void displayFruit(Fruit [][26], WINDOW *);
 
 //---------------gameboard Functions-----------------
 

@@ -1,55 +1,65 @@
+#include "../header/gameBoard.h"
 #include "../header/fruit.h"
+#include <ncurses.h>
 
 
 //fruit characters
-char fruit[] = {'.', '-', 'o', 'O' } ;
+static char fruit[4];
 
 //for customizing fruit types
-void setFruit(char input, int index)
+void setFruit(char input[])
 {
-    fruit[index] = input;
+    int i;
+    for (i = 0; i < 4; i++)
+    fruit[i] = input[i];
 }
 
-void initFruit(Fruit arr[][26])
+void initFruit(Fruit arr[][26], char map[][26])
 {
-    int ii, jj;
+    int i, j;
 
-    for ( ii = 0; ii <20; ii++ )
+    for ( i = 0; i <20; i++ )
     {
-        for (jj = 0; jj<26; jj++)
+        for (j = 0; j<26; j++)
         {
-            arr[ii][jj] = 0;
+            if(map[i][j] == fruit[0] || map[i][j] == fruit[1] || map[i][j] == fruit[2] || map[i][j] == fruit[3] )
+            {
+                arr[i][j] = map[i][j];
+                map[i][j] = ' ';
+            }
+            else
+            arr[i][j] = 0;
       }
     }
 }
 
 //assign pt value to fruit being eaten and add to score
-void eatFruit(PacMan *p1, Fruit f1[][26])
+int eatFruit(int x, int y, int score, Fruit f1[][26])
 {
-    if(f1[p1->y_position][p1->x_position] > 0)
+    if(f1[y][x] > 0)
     {
-        if(f1[p1->y_position][p1->x_position] == fruit[0])
+        if(f1[y][x] == fruit[0])
         {
-            p1->score += 1;
-            f1[p1->y_position][p1->x_position] = 0;
+            score += 1;
+            f1[y][x] = 0;
         }
-        else if(f1[p1->y_position][p1->x_position] == fruit[1])
+        else if(f1[y][x] == fruit[1])
         {
-            p1->score += 10;
-            f1[p1->y_position][p1->x_position] = 0;
+            score += 10;
+            f1[y][x] = 0;
         }
-        else if(f1[p1->y_position][p1->x_position] == fruit[2])
+        else if(f1[y][x] == fruit[2])
         {
-            p1->score += 100;
-            f1[p1->y_position][p1->x_position] = 0;
+            score += 100;
+            f1[y][x] = 0;
         }
-        else if(f1[p1->y_position][p1->x_position] == fruit[3])
+        else if(f1[y][x] == fruit[3])
         {
-            p1->score += 100;
-            f1[p1->y_position][p1->x_position] = 0;
+            score += 100;
+            f1[y][x] = 0;
         }
-
     }
+    return score;
 }
 
 //display fruit array to user
@@ -58,7 +68,7 @@ void displayFruit(Fruit fruit[][26], WINDOW *levelBuffer)
     int i,j;
     char character;
 
-    for ( i = 0; i <20; i++ )
+    for ( i = 0; i <18; i++ )
     {
         for (j = 0; j<26; j++)
         {

@@ -1,8 +1,16 @@
-#include "../header/gameboard.h"
+#include "../header/pacman.h"
+#include "../header/singlePlayerGameController.h"
+#include "../header/gameBoard.h"
+#include "../header/fruit.h"
+#include "../header/monster.h"
+#include <ncurses.h>
+
 
 //function to draw boarder around windows
 void draw_borders(WINDOW *screen) {
-  int x, y, i;
+  int x;
+  int y;
+  int i;
   getmaxyx(screen, y, x);
 
   // 4 corners
@@ -40,7 +48,6 @@ void gameBoardInitialize(GameBoard *a)
      a->numMonster = 0;    //number of monsters
      a->pause_state = 0;
      a->run_state = 1;
-
 }
 
 void displayBoard(GameBoard *gameboard, WINDOW *levelBuffer)
@@ -48,7 +55,7 @@ void displayBoard(GameBoard *gameboard, WINDOW *levelBuffer)
   int i,j;
   char character;
 
-  for ( i = 0; i < 20; i++)
+  for ( i = 0; i < 18; i++)
   {
       for (j = 0; j< 26; j++)
       {
@@ -57,49 +64,50 @@ void displayBoard(GameBoard *gameboard, WINDOW *levelBuffer)
               character = gameboard->map[i][j];
               mvwprintw(levelBuffer, i+1, j+1, "%c", character);
           }
-
     }
   }
 }
 
-int gameBoardLoad(GameBoard *gameboard, PacMan *pacman, Fruit fruitArr[][26], char fileName[])
-{   FILE* fp = NULL;
+int gameBoardLoad(GameBoard *gameboard, char fileName[])
+{
+    FILE* fp = NULL;
     char charInput;
     char str[27];
     int i,j;
     int numRead;
     int currentPos;
+    const int NUMCHAR = 100;
 
     fp = fopen(fileName, "r");
     if (!fp)
         return -1;
 
     //get wall
-    fgets(str, 27, fp);
+    fgets(str, NUMCHAR, fp);
 
     if(fp)
     {
         gameboard->wall = str[0];
     }
 
-    //get fruit
-    fgets(str, 27, fp);
+    //get fruit from second line
+    fgets(str, NUMCHAR, fp);
+
     if(fp)
     {
         numRead = numBytesRead(fp);
         for(i = 0; i < numRead; i++)
         {
-            if (str[i] > 32 && str[i] < 127 )
+            if (str[i] > 32 && str[i] < 127 ) //32 - 127 characters only
             {
                 gameboard->fruit[i] = str[i];
-                setFruit(str[i], i);
             }
         }
     }
 
     for ( i = 0; i < 18; i++ )
     {
-        fgets(str, 100, fp);
+        fgets(str, NUMCHAR, fp);
         for (j = 0; j<26; j++)
 	       {
                charInput = str[j];
@@ -112,9 +120,7 @@ int gameBoardLoad(GameBoard *gameboard, PacMan *pacman, Fruit fruitArr[][26], ch
                    charInput == gameboard->fruit[2] ||
                    charInput == gameboard->fruit[3])
                {
-                   fruitArr[i][j] = charInput;
-
-                   gameboard->map[i][j] = ' ';
+                   gameboard->map[i][j] = charInput;
 
                    if(charInput == gameboard->fruit[0])
                    gameboard->numFruit1++;
@@ -127,7 +133,6 @@ int gameBoardLoad(GameBoard *gameboard, PacMan *pacman, Fruit fruitArr[][26], ch
 
                    else
                    gameboard->numFruit4++;
-
                }
 
                else if(charInput == 'M')
@@ -138,12 +143,8 @@ int gameBoardLoad(GameBoard *gameboard, PacMan *pacman, Fruit fruitArr[][26], ch
 
                else if(charInput == '<')
                {
-                   pacman->x_start=i;
-                   pacman->y_start=j;
-                   pacman->x_position = j;
-                   pacman->y_position = i;
+                   gameboard->map[i][j] = charInput;
                    gameboard->numPacman++;
-                   gameboard->map[i][j] = ' ';
                }
            }
        }
@@ -164,38 +165,3 @@ int numBytesRead(FILE *ptr)
 
     return diffrence;
 }
-/*
-void monsterInitialize(int numMons, Monster *mon, GameBoard *board)
-{
-    int i, j, k;
-    //for(i = 0; i < board.numMonster; i++)
-    //{
-        mon->start_positionX = -1;
-        mon->x_direction = 0;
-        mon->y_direction = 0;
-        mon->state = 0;
-        mon->alive = 0;
-        mon->sprite = 'M';
-
-        //find monster's X Y
-        for(j = 0; j < 18; j++)
-        {
-            for(k = 0; k < 26; k++)
-            {
-                if (board->map[j][k] == 'M')
-                {
-                    mon->start_positionX = k;
-                    mon->start_positionY = j;
-                    board->map[j][k] = ' ';
-                    mon->x_position = k;
-                    mon->y_position = j;
-                    break;
-                }
-            }
-            if(mon->start_positionX != -1)
-            break;
-        }
-    //}
-
-}
-*/

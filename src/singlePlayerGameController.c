@@ -1,4 +1,10 @@
+#include "../header/pacman.h"
 #include "../header/singlePlayerGameController.h"
+#include "../header/gameBoard.h"
+#include "../header/fruit.h"
+#include "../header/monster.h"
+#include <string.h>
+#include <ncurses.h>
 #define DELAY2 50000
 
 int max_y = 20;
@@ -37,6 +43,7 @@ int singlePlayerGameController()
     do {
         fileNameCreater(fullPath, level);
 
+        //ensure filename is printed
         if (test == 1)
         {
             clear();
@@ -57,7 +64,7 @@ char startGame(int x, int y, char sprite)
 {
     char k;
     clear();
-    mvprintw(y, x, "%c", sprite);
+    //displayPacman
     refresh();
     k = getch();
     return k;
@@ -65,8 +72,6 @@ char startGame(int x, int y, char sprite)
 
 PacMan singlePlayerGameEngine(PacMan p1, char *fileName)
 {
-    char keypress;              //userinput from keyboard
-
     //ensure filename gets to function
     if (test == 2)
     {
@@ -76,11 +81,17 @@ PacMan singlePlayerGameEngine(PacMan p1, char *fileName)
         getch();
     }
 
+    char keypress;              //userinput from keyboard
+    WINDOW *gameArea = newwin(20, 28, 0, 0);
+    WINDOW *score = newwin(20,15, 0, 28);
+    GameBoard gb;
+    gameBoardInitialize(&gb);
+
     keypress = startGame(p1.x_position, p1.y_position, p1.sprite); //display gameboard and wait for input
     nodelay(stdscr, TRUE);        //once input recived turn off delay from keyboard
 
     do{
-        movePacman(&p1);
+        movePacman(&p1, gb.wall, gb.map);
         getPacmanDirection1(&p1.x_direction, &p1.y_direction, keypress, &p1.sprite);
         clear();
         mvprintw(p1.y_position, p1.x_position, "%c", p1.sprite); //print p

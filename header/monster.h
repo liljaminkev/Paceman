@@ -1,6 +1,10 @@
 #ifndef MONSTER_H
 #define MONSTER_H
 #include <ncurses.h>
+#include "pacman.h"
+#include "fruit.h"
+#include "singlePlayerGameController.h"
+#include "gameBoard.h"
 
 
 typedef struct
@@ -21,4 +25,6 @@ typedef struct
 void monsterRespawn(Monster *, int);
 void displayMonsters(Monster, int, WINDOW *);
 void moveMonster(Monster *);
+void initilizeMonsters(Monster [], char [][26], int);
+//void monsterInitialize(int, Monster *, char [][]);
 #endif

@@ -1,12 +1,9 @@
 #ifndef PACMAN_H
 #define PACMAN_H
-//#include "singlePlayerGameController.h"
-//#include "fruit.h"
-//#include "gameboard.h"
 #include <ncurses.h>
 
 //player informaiton
-typedef struct
+typedef struct PacMan
 {
     int lives;
     int x_position;
@@ -26,8 +23,9 @@ extern int MIN_Y;
 extern int MIN_X;
 
 void pacmanInitialize(PacMan *);
+void pacmanSetInitialPoint(PacMan *, char[][26]);
 void pacmanNextMove(PacMan *);
-//void movePacman(PacMan*, GameBoard*);
+void movePacman(PacMan*, char, char[][26]);
 void getPacmanDirection1(int *, int *, int, char *);
 void getPacmanDirection2(int *, int *, int, char *);
 void displayPacman(PacMan *, WINDOW *);

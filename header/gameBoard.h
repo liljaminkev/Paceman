@@ -1,8 +1,9 @@
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
-//#include "monster.h"
-//#include "pacman.h"
-//#include "fruit.h"
+#include "monster.h"
+#include "pacman.h"
+#include "fruit.h"
+#include "singlePlayerGameController.h"
 #include <ncurses.h>
 
 typedef struct
@@ -26,10 +27,10 @@ typedef struct
     int run_state;      //for run loop
 } GameBoard;
 
-void draw_borders(WINDOW *);
-void gameBoardInitialize(GameBoard *);
-void displayBoard(GameBoard *, WINDOW *);
-int gameBoardLoad(GameBoard *, PacMan *, Fruit [][26], char []);
+void draw_borders(WINDOW *);                //draw boarders
+void gameBoardInitialize(GameBoard *);      //set to to run state
+void displayBoard(GameBoard *, WINDOW *);   //display map
+int gameBoardLoad(GameBoard *, char []);    //load map from fileName
 int numBytesRead(FILE *);
-//void monsterInitialize(int, Monster *, GameBoard *);
+
 #endif

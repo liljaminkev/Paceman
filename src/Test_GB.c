@@ -12,18 +12,24 @@
 int main()
 {
     //declare vars
-    GameBoard gb;
     PacMan p1;
     Fruit f[20][26];
     int result;
     char fileName[50];
     int winx, winy;
+    GameBoard gb;
+
+    gameBoardInitialize(&gb);
+
+    //load gameboard data
+    fileNameCreater(fileName, 1);
+    result = gameBoardLoad(&gb, fileName);
 
     //init vars
-
-    initFruit(f);
+    setFruit(gb.fruit);
+    initFruit(f, gb.map);
     pacmanInitialize(&p1);
-    gameBoardInitialize(&gb);
+    pacmanSetInitialPoint(&p1, gb.map);
 
     //set up windows
     initscr();
@@ -35,21 +41,13 @@ int main()
     WINDOW *gameArea = newwin(20, 28, 0, 0);
     WINDOW *score = newwin(20,15, 0, 28);
 
-
-    //load gameboard data
-    fileNameCreater(fileName, 1);
-    result = gameBoardLoad(&gb, &p1, f, fileName);
-
     //declare monsters from gameboard and init
     Monster mon[gb.numMonster];
 
-    int i;
-    for(i = 0; i < gb.numMonster; i++)
-    {
-        monsterInitialize(gb.numMonster, &mon[i], &gb);
-    }
+    initilizeMonsters(mon, gb.map, gb.numMonster);
 
 
+/*
 
     //display gameboards
     draw_borders(gameArea);
@@ -84,23 +82,24 @@ for (i=0; i < 3; i++)
 }
 
 //test pacman movement
-char keypress;              //userinput from keyboard
+            //userinput from keyboard
 
 //ensure filename gets to function
-/*if (test == 2)
+if (test == 2)
 {
     clear();
     mvprintw(0, 0, "%s", fileName);
     refresh();
     getch();
-}
-*/
+}*/
+char keypress;
 //keypress = startGame(p1.x_position, p1.y_position, p1.sprite); //display gameboard and wait for input
 nodelay(stdscr, TRUE);        //once input recived turn off delay from keyboard
 
 do{
     clear();
-    movePacman(&p1, &gb);
+    movePacman(&p1, gb.wall, gb.map);
+    p1.score = eatFruit(p1.x_position,p1.y_position, p1.score, f);
     draw_borders(gameArea);
     draw_borders(score);
     displayBoard(&gb, gameArea);
