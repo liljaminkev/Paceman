@@ -1,6 +1,9 @@
 #ifndef MONSTER_H
 #define MONSTER_H
-typedef struct Monster
+#include <ncurses.h>
+
+
+typedef struct
 {
     int start_positionX;
     int start_positionY;
@@ -14,6 +17,9 @@ typedef struct Monster
     char sprite;
 } Monster;
 
-void monsterInitialize(Monster*);
-void monsterRespawn(Monster [], int);
+
+void monsterRespawn(Monster *, int);
+void displayMonsters(Monster, int, WINDOW *);
+void moveMonster(Monster *);
+void initilizeMonsters(Monster [], char [][26], int);
 #endif

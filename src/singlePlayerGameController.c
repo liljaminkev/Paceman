@@ -1,9 +1,10 @@
-#include "../header/singlePlayerGameController.h"
 #include "../header/pacman.h"
-#include <ncurses.h>
-#include <unistd.h>
+#include "../header/singlePlayerGameController.h"
+#include "../header/gameBoard.h"
+#include "../header/fruit.h"
+#include "../header/monster.h"
 #include <string.h>
-#include <stdlib.h>
+#include <ncurses.h>
 #define DELAY2 50000
 
 int max_y = 20;
@@ -26,6 +27,7 @@ void fileNameCreater(char *file, int level)
     sprintf(alevel, "%d", level);
     strcpy(file, partialPath);
     strcat(file, alevel);
+    strcat(file, ".txt");
 }
 
 int singlePlayerGameController()
@@ -41,6 +43,7 @@ int singlePlayerGameController()
     do {
         fileNameCreater(fullPath, level);
 
+        //ensure filename is printed
         if (test == 1)
         {
             clear();
@@ -49,28 +52,72 @@ int singlePlayerGameController()
             getch();
         }
 
+        exitCondition = singlePlayerGameEngine(&player1, fullPath);
 
-        player1 = singlePlayerGameEngine(player1, fullPath);
-    } while(player1.quit);
+        nodelay(stdscr, FALSE);
+        if (exitCondition == -1 && (player1.score == 0))
+        {
+            clear();
+            mvprintw(0, 0, "no level found");
+            refresh();
+            getch();
+        }
+        else if (exitCondition == -1 && (player1.lives > 0))
+        {
+            clear();
+            mvprintw(0, 0, "winner");
+            refresh();
+            getch();
+        }
+        else if (exitCondition == -2)
+        {
+            clear();
+            mvprintw(0, 0, "no pacman found on map");
+            refresh();
+            getch();
+        }
+        else if (player1.lives == 0)
+        {
+            clear();
+            mvprintw(0, 0, "lose");
+            refresh();
+            getch();
+        }
+        else if(player1.quit == 0)
+        {
+            clear();
+            mvprintw(0, 0, "have a nice day");
+            mvprintw(1, 0, "%d", player1.score);
+            refresh();
+            getch();
+        }
+
+        level++;
+    } while(player1.quit && player1.lives && (exitCondition > 0));
+
 
 
     return 0;
 }
 
-char startGame(int x, int y, char sprite)
+char startGame(PacMan *p1, Monster mon[], GameBoard *gb, Fruit f[][26], WINDOW *game, WINDOW *score)
 {
-    char k;
-    clear();
-    mvprintw(y, x, "%c", sprite);
-    refresh();
-    k = getch();
+    char k = 0;
+            curs_set(FALSE);
+            draw_borders(game);
+            draw_borders(score);
+            displayBoard(gb, game);
+            displayFruit(f, game);
+            displayPacman(p1, game);
+            displayMonsters(mon[0], gb->numMonster, game);
+            wrefresh(game);
+            wrefresh(score);
+            k = wgetch(game);
     return k;
 }
 
-PacMan singlePlayerGameEngine(PacMan p1, char *fileName)
+int singlePlayerGameEngine(PacMan *p1, char *fileName)
 {
-    char keypress;              //userinput from keyboard
-
     //ensure filename gets to function
     if (test == 2)
     {
@@ -80,23 +127,60 @@ PacMan singlePlayerGameEngine(PacMan p1, char *fileName)
         getch();
     }
 
-    keypress = startGame(p1.x_position, p1.y_position, p1.sprite); //display gameboard and wait for input
-    nodelay(stdscr, TRUE);        //once input recived turn off delay from keyboard
+    GameBoard gb;
+    gameBoardInitialize(&gb);
+    int result = gameBoardLoad(&gb, fileName);
+
+    if(result < 0)
+    return result;
+
+    char keypress;              //userinput from keyboard
+    int winx, winy;
+    Fruit f[20][26];
+
+    //window stuff
+    WINDOW *gameArea = newwin(20, 28, 0, 0);
+    WINDOW *score = newwin(20,15, 0, 28);
+
+    curs_set(FALSE);
+    clear();
+
+
+    //init vars
+    setFruit(gb.fruit);
+    initFruit(f, gb.map);
+    pacmanSetInitialPoint(p1, gb.map);
+
+    Monster mon[gb.numMonster];
+    initilizeMonsters(mon, gb.map, gb.numMonster);
+
+    keypress = startGame(p1, mon, &gb, f, gameArea, score); //display gameboard and wait for input
+
+    nodelay(gameArea, TRUE);        //once input recived turn off delay from keyboard
 
     do{
-        movePacman(&p1);
-        getPacmanDirection1(&p1.x_direction, &p1.y_direction, keypress, &p1.sprite);
-        clear();
-        mvprintw(p1.y_position, p1.x_position, "%c", p1.sprite); //print p
-        refresh();
+        movePacman(p1, gb.wall, gb.map);
+        eatFruit(p1->x_position,p1->y_position, p1->score, gb.numFruit1, f);
+        draw_borders(gameArea);
+        draw_borders(score);
+        displayBoard(&gb, gameArea);
+        displayFruit(f, gameArea);
+        displayPacman(p1, gameArea);
+        wnoutrefresh(gameArea);
+        wnoutrefresh(score);
+        doupdate();
 
         usleep(DELAY2);
+        if(p1->y_direction != 0)
+        usleep(DELAY2+DELAY2);
 
-        keypress = getch();
+        keypress = wgetch(gameArea);
+        getPacmanDirection1(&p1->x_direction, &p1->y_direction, keypress, &p1->sprite);
+        p1->quit = quit(keypress);
 
-        p1.quit = quit(keypress);
+    }while(0 != p1->quit && gb.numFruit1 > 0);
 
-    }while(0 != p1.quit);
-    nodelay(stdscr, FALSE);
-    return p1;
+    delwin(gameArea);
+    delwin(score);
+    return 1;
 }

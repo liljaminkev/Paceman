@@ -1,7 +1,11 @@
-#include "../header/singlePlayerGameController.h"
 #include "../header/pacman.h"
 #include <ncurses.h>
-#include <unistd.h>
+
+int MAX_Y = 17;
+int MAX_X = 25;
+int MIN_Y = 0;
+int MIN_X = 0;
+
 
 //player 1 controls
 int player1_up = 'w';
@@ -15,43 +19,88 @@ char player2_down = 'l';
 char player2_left = 'k';
 char player2_right = ';';
 
-
-void pacmanInitialize(PacMan *a)
+void displayPacman(PacMan *player, WINDOW *levelBuffer)
 {
-    a->lives = 1;
-    a->x_position = 0;
-    a->y_position = 0;
-    a->x_direction = 0;
-    a->y_direction = 0;
-    a->y_start = 0;
-    a->x_start = 0;
-    a->sprite = '<';
-    a->score = 0;
-    a->quit = 1;
+    mvwprintw(levelBuffer, player->y_position+1, player->x_position+1, "%c", player->sprite);
 }
 
-void movePacman(PacMan *player)
+void pacmanInitialize(PacMan *player)
+{
+    player->lives = 1;
+    player->x_position = 0;
+    player->y_position = 0;
+    player->x_direction = 1;
+    player->y_direction = 0;
+    player->y_start = -1;
+    player->x_start = 0;
+    player->sprite = '<';
+    player->score = 0;
+    player->quit = 1;
+}
+
+void pacmanSetInitialPoint(PacMan *player, char map[][26])
+{
+    int j;
+    int k;
+
+    player->x_position = 0;
+    player->y_position = 0;
+    player->x_direction = 1;
+    player->y_direction = 0;
+    player->y_start = -1;
+    player->x_start = 0;
+
+    for(j= 0; j < 18; j++)
+    {
+        for(k = 0; k < 26; k++)
+        {
+            if(map[j][k] == '<')
+            {
+                player->x_start = k;
+                player->y_start = j;
+
+                player->x_position = player->x_start;
+                player->y_position = player->y_start;
+                map[j][k] = ' ';
+                break;
+            }
+        }
+        if(player->y_start > 0)
+        break;
+    }
+
+}
+
+void movePacman(PacMan *player, char wall, char map[][26])
 {
   int next_x, next_y;
 
-  next_x = player->x_position + player->x_direction;
-  next_y = player->y_position + player->y_direction;
+  if(player->x_direction != 0)
+  {
+      next_x = player->x_position + player->x_direction;
 
-  if (next_x > max_x)
-  player->x_position = 0;
+      if (next_x > MAX_X)
+      player->x_position = MIN_X;
+      else if (next_x < MIN_X)
+      player->x_position = MAX_X;
+      else if (map[player->y_position][next_x] == wall)
+      player->x_direction = 0;
 
-  else if ( next_x < 0)
-  player->x_position = max_x;
+      player->x_position += player->x_direction;
+  }
 
-  player->x_position += player->x_direction;
+  if(player->y_direction != 0)
+  {
+      next_y = player->y_position + player->y_direction;
+      if (next_y > MAX_Y)
+      player->y_position = MIN_Y;
+      else if (next_y < MIN_Y)
+      player->y_position = MAX_Y;
+      else if (map[next_y][player->x_position] == wall)
+      player->y_direction = 0;
 
-
-  if (next_y > max_y)
-  player->y_position = 0;
-  else if (next_y < 0)
-  player->y_position = max_y;
-
-  player->y_position += player->y_direction;
+      player->y_position += player->y_direction;
+  }
 }
 
 void getPacmanDirection1(int *x_dir, int *y_dir, int input, char *sprite)
