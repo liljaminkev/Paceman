@@ -17,7 +17,7 @@ void getName();
 
 int mainMenu();
 
-void startGame();
+void startGameMenu();
 void singlePlayer();
 void twoPlayer();
 void multiPlayer();
@@ -33,5 +33,5 @@ void howToPlay();
 void demoGame();
 void highScore();
 
-void quit();
+void quitPrompt();
 #endif

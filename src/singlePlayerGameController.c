@@ -51,7 +51,6 @@ int singlePlayerGameController()
             refresh();
             getch();
         }
-
         exitCondition = singlePlayerGameEngine(&player1, fullPath);
 
         nodelay(stdscr, FALSE);
@@ -127,6 +126,7 @@ int singlePlayerGameEngine(PacMan *p1, char *fileName)
         getch();
     }
 
+    clear();
     GameBoard gb;
     gameBoardInitialize(&gb);
     int result = gameBoardLoad(&gb, fileName);
@@ -143,7 +143,7 @@ int singlePlayerGameEngine(PacMan *p1, char *fileName)
     WINDOW *score = newwin(20,15, 0, 28);
 
     curs_set(FALSE);
-    clear();
+
 
 
     //init vars

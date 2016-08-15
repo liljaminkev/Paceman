@@ -1,4 +1,5 @@
 #include "../header/menu.h"
+#include "../header/singlePlayerGameController.h"
 int startx = 0;
 int starty = 0;
 
@@ -16,14 +17,12 @@ void getName()
 char mesg[]="Enter name:     ";
 char str[80];
 int row,col;
-initscr();
 getmaxyx(stdscr,row,col);
 mvprintw(1,2, "%s", mesg);
 getstr(str);
 mvprintw(3, 2, "Hey %s! Lets play PACKMAN", str);
 mvprintw(6, 2, "Press any key to continue     ");
 getch();
-endwin();
 clear();
 
 }
@@ -35,7 +34,6 @@ int highlight = 1;
 int choice = 0;
 int input,d;
 
-initscr();
 clear();
 cbreak();
 startx = (85 - WIDTH) / 2;
@@ -94,7 +92,7 @@ do
 
 clrtoeol();
 refresh();
-endwin();
+delwin(menu_win);
 return choice;
 }
 
@@ -120,88 +118,74 @@ void print_menu(WINDOW *menu_win, int highlight)
     wrefresh(menu_win);
 }
 
-void startGame() 
+void startGameMenu()
     {
-        initscr();
         clear();
+		echo();
+		initscr();
         mvprintw(2,3, "START GAME");
         mvprintw(4,3, "1. Single player");
         mvprintw(5,3, "2. Two player");
         mvprintw(6,3, "3. Multi player");
         mvprintw(7,3, "4. Return to main menu");
         char mesg[]="Enter your choice: ";
-        char str[80];   
-        mvprintw(10,3, "%s", mesg);                         
-        getstr(str);
-        int numbr = atoi(str);
-        
-        switch(numbr)
+        char choice;
+        mvprintw(10,3, "%s", mesg);
+        choice = getch();
+		noecho();
+		endwin();
+
+        switch(choice)
         {
-            case 1:
-            singlePlayer();
+            case '1':
+            singlePlayerGameController();
             break;
 
-            case 2:
+            case '2':
             twoPlayer();
             break;
 
-            case 3:
+            case '3':
             multiPlayer();
             break;
 
-            case 4:
-            mainMenu();
+            case '4':
             break;
 
             default:
             break;
         }
-        refresh();
-        endwin();
+
     }
 
-    void singlePlayer()
-    {
-        initscr();
-        clear();
-        //mvprintw(1,3,"Single player");
-        // Include code to implement singlePlayer game controller
-        mvprintw(3,3, "Press any key to return to Start Game     ");  // Move this statement accordingly
-        char str[80];
-        getstr(str);
-        startGame();
-        endwin();
-    }
 
     void twoPlayer()
     {
-        initscr();
         clear();
         //mvprintw(1,3,"Two player");
         // Include code to implement twoPlayer game controller
         mvprintw(3,3, "Press any key to return to Start Game     ");  //Move this statement accordingly
         char str[80];
         getstr(str);
-        startGame();
-        endwin();
+        startGameMenu();
+
     }
 
     void multiPlayer()
     {
-        initscr();
+
         clear();
         //mvprintw(1,3," Multiplayer");
-        // Include code to implement multiPlayer game controller 
+        // Include code to implement multiPlayer game controller
         mvprintw(3,3, "Press any key to return to Start Game     ");  //Move this statement accordingly
         char str[80];
         getstr(str);
-        startGame();
-        endwin();
+        startGameMenu();
+
     }
 
     void options()
     {
-        initscr();
         clear();
         mvprintw(1,3,"OPTIONS:");
         mvprintw(3,3,"1. Load Custom Maps");
@@ -209,12 +193,12 @@ void startGame()
         mvprintw(5,3,"3. Clear High Score");
         mvprintw(6,3,"4. Change Controls");
         mvprintw(7,3,"5. Return to main menu");
-        char mesg[]="Enter your choice: ";  
-        char str[80];   
-        mvprintw(10,3, "%s", mesg);                         
+        char mesg[]="Enter your choice: ";
+        char str[80];
+        mvprintw(10,3, "%s", mesg);
         getstr(str);
         int numbr = atoi(str);
-        
+
         switch(numbr)
         {
             case 1:
@@ -230,7 +214,7 @@ void startGame()
             break;
 
             case 4:
-            changeControls();  
+            changeControls();
             break;
 
             case 5:
@@ -240,38 +224,36 @@ void startGame()
             default:
             break;
         }
-        endwin();
+
     }
 
     void loadCustomMap()
     {
-        initscr();
         clear();
-        //mvprintw(4,3, "This function will load Custom maps"); 
+        //mvprintw(4,3, "This function will load Custom maps");
         // Include code to implement Load Custom Maps
 
         mvprintw(8,3, "Press any key to return to Options     ");  //Move this statement accordingly
         char str[80];
         getstr(str);
         options();
-        endwin();
+
     }
 
     void changeDifficulty()
     {
-        initscr();
         clear();
         mvprintw(1,3,"OPTIONS:");
         //mvprintw(3,3,"1. Easy");
         //mvprintw(4,3,"2. Medium");
-        //mvprintw(5,3,"3. Hard");          
+        //mvprintw(5,3,"3. Hard");
         mvprintw(6,3,"4. Return to Options");    //Include functions for above 3 options
         char mesg[]="Enter your choice: ";
         char str[80];
-        mvprintw(9,3, "%s", mesg);                          
+        mvprintw(9,3, "%s", mesg);
         getstr(str);
         int numbr = atoi(str);
-        
+
         switch(numbr)
         {
             case 1:
@@ -293,12 +275,12 @@ void startGame()
             default:
             break;
         }
-        endwin();
+
     }
 
     void clearHighScore()
     {
-        initscr();
+        ;
         clear();
         //mvprintw(4,3, "This function will allow the user to clear highscore");
         // Include code to implement Clear Highscore
@@ -307,12 +289,12 @@ void startGame()
         char str[80];
         getstr(str);
         options();
-        endwin();
+
     }
 
-    void changeControls()  
+    void changeControls()
     {
-        initscr();
+        ;
         clear();
         //mvprintw(4,3, "This function will allow the user to change controls");
         // Include code to implement Change Controls
@@ -321,24 +303,24 @@ void startGame()
         char str[80];
         getstr(str);
         options();
-        endwin();
+
     }
 
     void aboutTheGame()
     {
-        initscr();
+        ;
         clear();
         mvprintw(1,3,"ABOUT THE GAME:");
         mvprintw(3,3,"1. How To Play");
         mvprintw(4,3,"2. Demo Game");
         mvprintw(5,3,"3. High Score");
         mvprintw(6,3,"4. Return to Main Menu");
-        char mesg[]="Enter your choice:     ";      
-        char str[80];   
-        mvprintw(8,3, "%s", mesg);                      
+        char mesg[]="Enter your choice:     ";
+        char str[80];
+        mvprintw(8,3, "%s", mesg);
         getstr(str);
         int numbr = atoi(str);
-        
+
         switch(numbr)
         {
             case 1:
@@ -359,13 +341,13 @@ void startGame()
 
             defaut:
             break;
-        }   
-        endwin();
+        }
+
     }
 
     void demoGame()
     {
-        initscr();
+        ;
         clear();
         //mvprintw(4,3, "Demo Game");
         // Include code to implement Demo Game
@@ -374,16 +356,16 @@ void startGame()
         char str[80];
         getstr(str);
         aboutTheGame();
-        endwin();
+
     }
 
     void howToPlay()
     {
-        initscr();
+        ;
         clear();
         mvprintw(3,2, "ABOUT THE GAME:");
         mvprintw(6,2, "W - Move up     S - Move down");
-        mvprintw(7,2, "A - Move left   D - Move right");        // Single player keys 
+        mvprintw(7,2, "A - Move left   D - Move right");        // Single player keys
         //mvprintw(9,2, "  - Move up       - Move down");
         //mvprintw(10,2, "  - Move left      - Move right");    //Two player keys
         mvprintw(9,2, "--> Eat the default fruits '-' by using four keys.");
@@ -398,12 +380,12 @@ void startGame()
         char str[80];
         getstr(str);
         aboutTheGame();
-        endwin();
+
     }
 
     void highScore()
     {
-        initscr();
+        ;
         clear();
         //mvprintw(4,3, "High Score");
         // Include code to implement view highscore
@@ -412,18 +394,17 @@ void startGame()
         char str[80];
         getstr(str);
         aboutTheGame();
-        endwin();
+
     }
 
-    void quit()
+    void quitPrompt()
     {
-        initscr();
         clear();
         mvprintw(4, 3, "Are you sure you want to quit?");
         mvprintw(8, 3, "Press 1 to quit   ");
         mvprintw(9, 3, "Press 2 to go back to main menu   ");
 
-        char str[80];                       
+        char str[80];
         getstr(str);
         int numbr = atoi(str);
         if (numbr == 1)
@@ -438,5 +419,5 @@ void startGame()
         {
             mvprintw(11, 3, "Press enter a valid input   ");
         }
-        endwin();
+
     }
