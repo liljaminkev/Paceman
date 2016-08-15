@@ -295,6 +295,7 @@ void startGame()
         }
         endwin();
     }
+
     void clearHighScore()
     {
         initscr();
@@ -320,5 +321,122 @@ void startGame()
         char str[80];
         getstr(str);
         options();
+        endwin();
+    }
+
+    void aboutTheGame()
+    {
+        initscr();
+        clear();
+        mvprintw(1,3,"ABOUT THE GAME:");
+        mvprintw(3,3,"1. How To Play");
+        mvprintw(4,3,"2. Demo Game");
+        mvprintw(5,3,"3. High Score");
+        mvprintw(6,3,"4. Return to Main Menu");
+        char mesg[]="Enter your choice:     ";      
+        char str[80];   
+        mvprintw(8,3, "%s", mesg);                      
+        getstr(str);
+        int numbr = atoi(str);
+        
+        switch(numbr)
+        {
+            case 1:
+            howToPlay();
+            break;
+
+            case 2:
+            demoGame();
+            break;
+
+            case 3:
+            highScore();
+            break;
+
+            case 4:
+            mainMenu();
+            break;
+
+            defaut:
+            break;
+        }   
+        endwin();
+    }
+
+    void demoGame()
+    {
+        initscr();
+        clear();
+        //mvprintw(4,3, "Demo Game");
+        // Include code to implement Demo Game
+
+        mvprintw(8,3, "Press any key to return to About The Game     ");        // Move this statement accordingly
+        char str[80];
+        getstr(str);
+        aboutTheGame();
+        endwin();
+    }
+
+    void howToPlay()
+    {
+        initscr();
+        clear();
+        mvprintw(3,2, "ABOUT THE GAME:");
+        mvprintw(6,2, "W - Move up     S - Move down");
+        mvprintw(7,2, "A - Move left   D - Move right");        // Single player keys 
+        //mvprintw(9,2, "  - Move up       - Move down");
+        //mvprintw(10,2, "  - Move left      - Move right");    //Two player keys
+        mvprintw(9,2, "--> Eat the default fruits '-' by using four keys.");
+        mvprintw(11,2, "--> Eat the special fruits '&' to gain 10 points as well as weaken the monters.");
+        mvprintw(13,2, "--> Weakened monsters can be eaten. Eating one monster will fetch you 100 points.");
+        mvprintw(15,2, "--> When the monsters come closer, try to move away from them.");
+        mvprintw(16,2, "--> If unweakened monsters eat you, then you will lose the game.");
+        mvprintw(18,2, "--> Eat all the dots to get to next level.");
+        mvprintw(21,2, "Have fun playing!");
+
+        mvprintw(24,2, "Press any key to return to About The Game     ");
+        char str[80];
+        getstr(str);
+        aboutTheGame();
+        endwin();
+    }
+
+    void highScore()
+    {
+        initscr();
+        clear();
+        //mvprintw(4,3, "High Score");
+        // Include code to implement view highscore
+
+        mvprintw(8,3, "Press any key to return to About The Game     ");    // Move this statement accordingly
+        char str[80];
+        getstr(str);
+        aboutTheGame();
+        endwin();
+    }
+
+    void quit()
+    {
+        initscr();
+        clear();
+        mvprintw(4, 3, "Are you sure you want to quit?");
+        mvprintw(8, 3, "Press 1 to quit   ");
+        mvprintw(9, 3, "Press 2 to go back to main menu   ");
+
+        char str[80];                       
+        getstr(str);
+        int numbr = atoi(str);
+        if (numbr == 1)
+        {
+            system("pause");
+        }
+        else if (numbr == 2)
+        {
+            mainMenu();
+        }
+        else
+        {
+            mvprintw(11, 3, "Press enter a valid input   ");
+        }
         endwin();
     }

@@ -47,12 +47,12 @@ int main()
         break;
 
         case 3:
-        //aboutTheGame();
+        aboutTheGame();
         break;
 
         case 4: //set screen back to defualt and exit game
         //choice = 0;
-        //quit();
+        quit();
         break;
 
         default:

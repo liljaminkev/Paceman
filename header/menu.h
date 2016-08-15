@@ -28,10 +28,10 @@ void changeDifficulty();
 void clearHighScore();
 void changeControls();
 
-// void aboutTheGame();
-// void howToPlay();
-// void demoGame();
-// void highScore();
+void aboutTheGame();
+void howToPlay();
+void demoGame();
+void highScore();
 
-//void quit();
+void quit();
 #endif
