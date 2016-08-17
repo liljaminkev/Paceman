@@ -1,5 +1,6 @@
 #include "../header/gameBoard.h"
 #include "../header/fruit.h"
+#include "../header/pacman.h"
 #include <ncurses.h>
 
 
@@ -34,30 +35,30 @@ void initFruit(Fruit arr[][26], char map[][26])
 }
 
 //assign pt value to fruit being eaten and add to score
-void eatFruit(int x, int y, int score, int numFruit1, Fruit f1[][26])
+void eatFruit(int x, int y, PacMan *b, GameBoard *a, Fruit f1[][26])
 {
-    if(f1[y][x] > 0)
+    if(f1[x][y] > 0)
     {
-        if(f1[y][x] == fruit[0])
+        if(f1[x][y] == fruit[0])
         {
-            score += 1;
-            f1[y][x] = 0;
-            numFruit1--;
+            b->score += 1;
+            f1[x][y] = 0;
+            a->numFruit1--;
         }
-        else if(f1[y][x] == fruit[1])
+        else if(f1[x][y] == fruit[1])
         {
             score += 10;
-            f1[y][x] = 0;
+            f1[x][y] = 0;
         }
-        else if(f1[y][x] == fruit[2])
+        else if(f1[x][y] == fruit[2])
         {
             score += 100;
-            f1[y][x] = 0;
+            f1[x][y] = 0;
         }
-        else if(f1[y][x] == fruit[3])
+        else if(f1[x][y] == fruit[3])
         {
             score += 100;
-            f1[y][x] = 0;
+            f1[x][y] = 0;
         }
     }
 }
