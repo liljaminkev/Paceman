@@ -12,6 +12,7 @@ void displayMonsters(Monster mon, int numMonsters, WINDOW *gameArea)
     mvwprintw(gameArea, mon.y_position+1, mon.x_position+1, "%c", mon.sprite);
 }
 
+/*
 void monsterRespawn(Monster *mon, int numMonsters)
 {
     for(int i = 0; i < numMonsters; i++)
@@ -25,6 +26,8 @@ void monsterRespawn(Monster *mon, int numMonsters)
         }
     }
 }
+*/
+
 void initilizeMonsters(Monster mon[], char a[][26], int numMonsters)
 {
     int i;
