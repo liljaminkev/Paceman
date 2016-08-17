@@ -103,6 +103,7 @@ int singlePlayerGameController()
 char startGame(PacMan *p1, Monster mon[], GameBoard *gb, Fruit f[][26], WINDOW *game, WINDOW *score)
 {
     char k = 0;
+            nodelay(stdscr, FALSE);
             curs_set(FALSE);
             draw_borders(game);
             draw_borders(score);
@@ -154,7 +155,7 @@ int singlePlayerGameEngine(PacMan *p1, char *fileName)
 
     Monster mon[gb.numMonster];
     initilizeMonsters(mon, gb.map, gb.numMonster);
-
+do{
     keypress = startGame(p1, mon, &gb, f, gameArea, score); //display gameboard and wait for input
 
     nodelay(gameArea, TRUE);        //once input recived turn off delay from keyboard
@@ -180,7 +181,7 @@ int singlePlayerGameEngine(PacMan *p1, char *fileName)
         p1->quit = quit(keypress);
 
     }while(0 != p1->quit && gb.numFruit1 > 0);
-
+}while(0 != p1->quit && gb.numFruit1 > 0);
     delwin(gameArea);
     delwin(score);
     return 1;
