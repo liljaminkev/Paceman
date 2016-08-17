@@ -100,7 +100,7 @@ int gameBoardLoad(GameBoard *gameboard, char fileName[])
             }
         }
     }
-
+//hello
     for ( i = 0; i < 18; i++ )
     {
         fgets(str, NUMCHAR, fp);
