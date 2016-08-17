@@ -9,7 +9,7 @@ all: pacman
 # 	$(CC) -o $(OUTFILE) fruit.o singlePlayerGameController.o Test_GB.o gameBoard.o pacman.o Monster.o -lncurses -lpthread
 
 pacman: menu.o main.o
-	$(CC) -o $(OUTFILE) menu.o main.o -lncurses -lpthread
+	$(CC) -o $(OUTFILE) menu.o main.o singlePlayerGameController.o -lncurses -lpthread
 
 # fruit.o: fruit.c
 # 	$(CC) $(CFLAGS) fruit.c
@@ -34,6 +34,9 @@ menu.o: menu.c
 
 main.o: main.c
 	$(CC) $(CFLAGS) main.c
+	
+main.o: singlePlayerGameController.c
+	$(CC) $(CFLAGS) singlePlayerGameController.c
 
 
 
