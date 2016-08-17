@@ -150,6 +150,7 @@ void startGameMenu()
             break;
 
             case '4':
+            quitPrompt();
             break;
 
             default:
