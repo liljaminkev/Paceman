@@ -13,8 +13,8 @@ void displayMonsters(Monster mon, int numMonsters, WINDOW *gameArea)
 }
 
 void monsterRespawn(Monster *mon, int numMonsters)
-{
-    for(int i = 0; i < numMonsters; i++)
+{   int i;
+    for(i = 0; i < numMonsters; i++)
     {
         if (mon[i].alive == 0)
         {
