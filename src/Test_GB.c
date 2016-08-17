@@ -1,4 +1,4 @@
-#include "../header/gameboard.h"
+#include "../header/gameBoard.h"
 #include "../header/pacman.h"
 #include "../header/monster.h"
 #include "../header/fruit.h"

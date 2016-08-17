@@ -5,6 +5,7 @@
 #include "../header/monster.h"
 #include <string.h>
 #include <ncurses.h>
+#include <unistd.h>
 #define DELAY2 50000
 
 int max_y = 20;
