@@ -6,6 +6,7 @@
 #include <string.h>
 #include <ncurses.h>
 #include <unistd.h>
+#include <pthread.h>
 #define DELAY2 50000
 
 int max_y = 20;
@@ -38,6 +39,7 @@ int singlePlayerGameController()
     PacMan player1;
     char fullPath[100];
     int level = 1;
+   
 
     pacmanInitialize(&player1); //set pacman initial state;
 
@@ -110,7 +112,7 @@ char startGame(PacMan *p1, Monster mon[], GameBoard *gb, Fruit f[][26], WINDOW *
             displayBoard(gb, game);
             displayFruit(f, game);
             displayPacman(p1, game);
-            displayMonsters(mon[0], gb->numMonster, game);
+	    displayMonsters(mon, gb->numMonster, game);
             wrefresh(game);
             wrefresh(score);
             k = wgetch(game);
@@ -139,6 +141,10 @@ int singlePlayerGameEngine(PacMan *p1, char *fileName)
     char keypress;              //userinput from keyboard
     int winx, winy;
     Fruit f[20][26];
+    
+    pthread_t monsterThread;
+    int monsterThreadRet;
+    threadData threadData;
 
     //window stuff
     WINDOW *gameArea = newwin(20, 28, 0, 0);
@@ -154,12 +160,18 @@ int singlePlayerGameEngine(PacMan *p1, char *fileName)
     pacmanSetInitialPoint(p1, gb.map);
 
     Monster mon[gb.numMonster];
-    initilizeMonsters(mon, gb.map, gb.numMonster);
+    initializeMonsters(mon, gb.map, gb.numMonster);
+    
+    threadData.pacPointer = p1;
+    threadData.gbPointer = &gb;
+    threadData.monPointer = mon;
+
 do{
     keypress = startGame(p1, mon, &gb, f, gameArea, score); //display gameboard and wait for input
 
-    nodelay(gameArea, TRUE);        //once input recived turn off delay from keyboard
 
+    nodelay(gameArea, TRUE);        //once input recived turn off delay from keyboard
+    monsterThreadRet = pthread_create(&monsterThread, NULL, moveMonster, (void*) &threadData);
     do{
         movePacman(p1, gb.wall, gb.map);
         eatFruit(p1->x_position,p1->y_position, p1->score, gb.numFruit1, f);
@@ -168,6 +180,7 @@ do{
         displayBoard(&gb, gameArea);
         displayFruit(f, gameArea);
         displayPacman(p1, gameArea);
+	displayMonsters(mon, gb.numMonster, gameArea);
         wnoutrefresh(gameArea);
         wnoutrefresh(score);
         doupdate();
@@ -181,6 +194,8 @@ do{
         p1->quit = quit(keypress);
 
     }while(0 != p1->quit && gb.numFruit1 > 0);
+
+    pthread_cancel(monsterThread);
 }while(0 != p1->quit && gb.numFruit1 > 0);
     delwin(gameArea);
     delwin(score);

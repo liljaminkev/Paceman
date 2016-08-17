@@ -20,5 +20,5 @@ typedef struct Monster
 void monsterRespawn(Monster *, int);
 void displayMonsters(Monster *, int, WINDOW *);
 void *moveMonster(void *);
-
+void initializeMonsters(Monster [], char [][26], int);
 #endif

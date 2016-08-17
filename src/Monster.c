@@ -2,12 +2,14 @@
 #include "../header/gameBoard.h"
 #include <ncurses.h>
 #include "../header/pacman.h"
+#include "../header/singlePlayerGameController.h"
 #include <unistd.h>
 #include <time.h>
 #include <stdlib.h>
 
 #define MAGIC 5
 #define OUTERWALL 'X'
+#define M_SPEED 200000 //Lower this value, the faster the monsters will move
 void randomDirection(int *, int *);
 
 void *moveMonster(void *t)
@@ -23,6 +25,8 @@ void *moveMonster(void *t)
 	for(int i = 0; i < gb->numMonster; ++i)
 	{
 		randomDirection(&(mon[i].x_direction), &(mon[i].y_direction));
+		mon[i].x_position = mon[i].start_positionX;
+		mon[i].y_position = mon[i].start_positionY;
 	}
 	while(0 != p1->quit)
 	{
@@ -45,7 +49,7 @@ void *moveMonster(void *t)
 			mon[i].y_position = y_next;
 			mon[i].x_position = x_next;
 		}
-		usleep(250000);
+		usleep(M_SPEED);
 	}
 }
 
@@ -91,5 +95,37 @@ void randomDirection(int *x, int *y)
 			*x = 1;
 			*y = 0;
 			break;
+	}
+}
+void initializeMonsters(Monster mon[], char a[][26], int numMonsters)
+{
+	int i;
+	int j;
+	int k;
+	for(i = 0; i < numMonsters; ++i)
+	{
+		mon[i].start_positionX = -1;
+		mon[i].x_direction = 0;
+		mon[i].y_direction = 0;
+		mon[i].state = 0;
+		mon[i].alive = 1;
+		mon[i].sprite = 'M';
+		for (j= 0; j < 20; j ++)
+		{
+			for(k = 0; k < 26; k++)
+			{
+				if(a[j][k] == 'M')
+				{
+					mon[i].start_positionX = k;
+					mon[i].start_positionY = j;
+					mon[i].x_position = mon[i].start_positionX;
+					mon[i].y_position = mon[i].start_positionY;
+					a[j][k] = ' ';
+					break;
+				}
+			}
+			if(mon[i].start_positionX > 0)
+				break;
+		}
 	}
 }
