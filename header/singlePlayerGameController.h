@@ -8,12 +8,6 @@
 
 extern int max_y;
 extern int max_x;
-typedef struct threadData {
-	    PacMan *pacPointer;
-	    GameBoard *gbPointer;
-	    Monster *monPointer;
-} threadData;
-
 
 int singlePlayerGameEngine(PacMan *, char *);
 char startGame(PacMan *, Monster [], GameBoard*, Fruit [][26], WINDOW *, WINDOW *);
