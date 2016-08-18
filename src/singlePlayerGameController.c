@@ -160,7 +160,7 @@ int singlePlayerGameEngine(PacMan *p1, char *fileName)
 
     do{
         movePacman(p1, gb.wall, gb.map);
-        eatFruit(p1->x_position,p1->y_position, &p1,&gb, f);
+        eatFruit(p1->x_position,p1->y_position, p1,&gb, f);
         draw_borders(gameArea);
         draw_borders(score);
         displayBoard(&gb, gameArea);
