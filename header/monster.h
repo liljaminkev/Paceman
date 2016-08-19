@@ -1,8 +1,9 @@
 #ifndef MONSTER_H
 #define MONSTER_H
 #include <ncurses.h>
-#include "pacman.h"
-typedef struct Monster
+
+
+typedef struct
 {
     int start_positionX;
     int start_positionY;
@@ -18,7 +19,7 @@ typedef struct Monster
 
 
 void monsterRespawn(Monster *, int);
-void displayMonsters(Monster *, int, WINDOW *);
-void *moveMonster(void *);
-void initializeMonsters(Monster [], char [][26], int);
+void displayMonsters(Monster, int, WINDOW *);
+void moveMonster(Monster *);
+void initilizeMonsters(Monster [], char [][26], int);
 #endif

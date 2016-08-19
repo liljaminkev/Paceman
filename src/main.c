@@ -35,8 +35,7 @@ int main()
         break;
 
         case 4: //set screen back to defualt and exit game
-        //choice = 0;
-        quitPrompt();
+        choice = 0;
         break;
 
         default:
@@ -48,4 +47,3 @@ int main()
     endwin();
     return 0;
 }
-
