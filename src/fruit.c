@@ -35,15 +35,15 @@ void initFruit(Fruit arr[][26], char map[][26])
 }
 
 //assign pt value to fruit being eaten and add to score
-void eatFruit(int x, int y, PacMan *b, GameBoard *a, Fruit f1[][26])
+void eatFruit(int x, int y, int *score, int *numFruit1, Fruit f1[][26])
 {
     if(f1[y][x] > 0)
     {
         if(f1[y][x] == fruit[0])
         {
-            b->score += 1;
+            score += 1;
             f1[y][x] = 0;
-            a->numFruit1--;
+            numFruit1--;
         }
         else if(f1[y][x] == fruit[1])
         {
