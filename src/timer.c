@@ -1,26 +1,16 @@
 #include <stdio.h>
-#include <signal.h>
-#include <sys/time.h>
-#include <time.h>
-#include <math.h>
 
-int recent( int s)
-int j,k;
-int rec= s-1;
-for(j=3;j<= s;++j)
-    for (k=sqrt(j);k>1;--k)
-    if (j%k==0)
-{
-    -- rec;break;
-}
+void timer()
 
-int main ()
 {
-    clock_t w;
-    int a;
-    w= recent(60);
-    w=clock() - t;
-    printf("Timer=",a);
-    printf("clock")
-    return 0;
+    int count;
+    count=10;
+
+    while(count != 0)
+    {
+        printf("\n\t%d", count);
+        count--;
+        sleep(1);
+    }
+    //printf(" \n Time is UP \n");
 }
