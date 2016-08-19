@@ -1,21 +1,18 @@
 #include "../header/monster.h"
 #include "../header/gameBoard.h"
 #include <ncurses.h>
-#include "../header/pacman.h"
 #include "../header/singlePlayerGameController.h"
 #include <unistd.h>
 #include <time.h>
 #include <stdlib.h>
 
 #define MAGIC 5
-#define OUTERWALL 'X'
 #define M_SPEED 200000 //Lower this value, the faster the monsters will move
 void randomDirection(int *, int *);
 
 void *moveMonster(void *t)
 {
 	threadData* t1 = (threadData *)t;
-	PacMan *p1 = t1->pacPointer;
 	Monster *mon = t1->monPointer;
 	GameBoard *gb = t1->gbPointer;
 
@@ -28,7 +25,7 @@ void *moveMonster(void *t)
 		mon[i].x_position = mon[i].start_positionX;
 		mon[i].y_position = mon[i].start_positionY;
 	}
-	while(0 != p1->quit)
+	while(1)
 	{
 		for(int i = 0; i < gb->numMonster; ++i)
 		{
