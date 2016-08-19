@@ -1,4 +1,4 @@
-#include "../header/gameboard.h"
+#include "../header/gameBoard.h"
 #include "../header/pacman.h"
 #include "../header/monster.h"
 #include "../header/fruit.h"
@@ -99,7 +99,7 @@ nodelay(stdscr, TRUE);        //once input recived turn off delay from keyboard
 do{
     clear();
     movePacman(&p1, gb.wall, gb.map);
-    eatFruit(p1.x_position,p1.y_position, &p1,&gb,f);
+//    p1.score = eatFruit(p1.x_position,p1.y_position, p1.score, f);
     draw_borders(gameArea);
     draw_borders(score);
     displayBoard(&gb, gameArea);

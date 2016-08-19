@@ -1,8 +1,6 @@
 #ifndef FRUIT_H
 #define FRUIT_H
 #include <ncurses.h>
-#include "gameBoard.h"
-#include "pacman.h"
 
 //array of characters
 typedef char Fruit;
