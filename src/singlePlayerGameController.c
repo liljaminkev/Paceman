@@ -39,7 +39,7 @@ int singlePlayerGameController()
     PacMan player1;
     char fullPath[100];
     int level = 1;
-   
+
 
     pacmanInitialize(&player1); //set pacman initial state;
 
@@ -141,7 +141,7 @@ int singlePlayerGameEngine(PacMan *p1, char *fileName)
     char keypress;              //userinput from keyboard
     int winx, winy;
     Fruit f[20][26];
-    
+
     pthread_t monsterThread;
     int monsterThreadRet;
     threadData threadData;
@@ -161,7 +161,7 @@ int singlePlayerGameEngine(PacMan *p1, char *fileName)
 
     Monster mon[gb.numMonster];
     initializeMonsters(mon, gb.map, gb.numMonster);
-    
+
     threadData.pacPointer = p1;
     threadData.gbPointer = &gb;
     threadData.monPointer = mon;
@@ -174,7 +174,7 @@ do{
     monsterThreadRet = pthread_create(&monsterThread, NULL, moveMonster, (void*) &threadData);
     do{
         movePacman(p1, gb.wall, gb.map);
-        eatFruit(p1->x_position,p1->y_position, p1->score, gb.numFruit1, f);
+        eatFruit(p1->x_position,p1->y_position, &(p1->score), &gb.numFruit1, f);
         draw_borders(gameArea);
         draw_borders(score);
         displayBoard(&gb, gameArea);
