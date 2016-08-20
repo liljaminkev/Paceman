@@ -26,7 +26,7 @@ void displayPacman(PacMan *player, WINDOW *levelBuffer)
 
 void pacmanInitialize(PacMan *player)
 {
-    player->lives = 1;
+    player->lives = 3;
     player->x_position = 0;
     player->y_position = 0;
     player->x_direction = 1;

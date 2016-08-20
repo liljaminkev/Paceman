@@ -13,6 +13,7 @@ int max_y = 20;
 int max_x = 26;
 const int test = 0;
 
+int pacmanOnMonster(PacMan *, Monster *, int);
 int quit(char input)
 {
     if (input == 'q')
@@ -105,7 +106,7 @@ int singlePlayerGameController()
 char startGame(PacMan *p1, Monster mon[], GameBoard *gb, Fruit f[][26], WINDOW *game, WINDOW *score)
 {
     char k = 0;
-            nodelay(stdscr, FALSE);
+            nodelay(game, FALSE);
             curs_set(FALSE);
             draw_borders(game);
             draw_borders(score);
@@ -192,12 +193,28 @@ do{
         keypress = wgetch(gameArea);
         getPacmanDirection1(&p1->x_direction, &p1->y_direction, keypress, &p1->sprite);
         p1->quit = quit(keypress);
+	if(pacmanOnMonster(p1, mon, gb.numMonster) ==  0)
+		break;
 
     }while(0 != p1->quit && gb.numFruit1 > 0);
-
+    --(p1->lives);
     pthread_cancel(monsterThread);
-}while(0 != p1->quit && gb.numFruit1 > 0);
+    p1->x_position = p1->x_start;
+    p1->y_position = p1->y_start;
+
+}while((0 != p1->quit) && (gb.numFruit1 > 0) && (p1->lives > 0));
     delwin(gameArea);
     delwin(score);
     return 1;
+}
+int pacmanOnMonster(PacMan *p1, Monster *mon, int n_monsters)
+{
+	if((p1 == NULL) || (mon == NULL))
+		return 2;
+	for(int i = 0; i < n_monsters; ++i)
+	{
+		if((p1->x_position == mon[i].x_position) && (p1->y_position == mon[i].y_position))
+			return 0;
+	}
+	return 1;
 }
