@@ -21,6 +21,7 @@ typedef struct
     int numMonster;     //number of monsters
     int pause_state;    //for pause loop
     int run_state;      //for run loop
+    int level;
 } GameBoard;
 
 void draw_borders(WINDOW *);                //draw boarders
@@ -28,5 +29,5 @@ void gameBoardInitialize(GameBoard *);      //set to to run state
 void displayBoard(GameBoard *, WINDOW *);   //display map
 int gameBoardLoad(GameBoard *, char []);    //load map from fileName
 int numBytesRead(FILE *);
-
+void displayLevel(GameBoard *, WINDOW *);
 #endif
