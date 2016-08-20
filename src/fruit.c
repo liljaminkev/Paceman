@@ -34,32 +34,58 @@ void initFruit(Fruit arr[][26], char map[][26])
 }
 
 //assign pt value to fruit being eaten and add to score
-void eatFruit(int x, int y, int score, int numFruit1, Fruit f1[][26])
+int eatFruit(int x, int y, int *score, Fruit f1[][26])
 {
     if(f1[y][x] > 0)
     {
         if(f1[y][x] == fruit[0])
         {
-            score += 1;
+           *score += 1;
             f1[y][x] = 0;
-            numFruit1--;
+            return 1;
         }
         else if(f1[y][x] == fruit[1])
         {
-            score += 10;
+            *score += 10;
             f1[y][x] = 0;
+	   return 2;
         }
         else if(f1[y][x] == fruit[2])
         {
-            score += 100;
+           *score += 100;
             f1[y][x] = 0;
+	   return 3;
         }
         else if(f1[y][x] == fruit[3])
         {
-            score += 100;
+           *score += 100;
             f1[y][x] = 0;
+	   return 4;
         }
     }
+
+	return 0;
+}
+
+//decrement fruits 1,2,3,4
+void eatFruit1(int *numFruit1)
+{
+	*numFruit1 += -1;
+}
+
+void eatFruit2(int *numFruit2)
+{
+	*numFruit2--;
+}
+
+void eatFruit3(int *numFruit3)
+{
+	*numFruit3--;
+}
+
+void eatFruit4(int *numFruit4)
+{
+	*numFruit4--;
 }
 
 //display fruit array to user
