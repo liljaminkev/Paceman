@@ -72,26 +72,37 @@ void monsterRespawn(Monster *mon, int numMonsters)
 }
 void randomDirection(int *x, int *y)
 {
-	int r;
-	r = (rand()%4) + 1;
-	switch(r)
+	int r, tempX, tempY;
+	while(1)
 	{
-		case 1:
-			*x = 0;
-			*y = -1;
+		r = (rand()%4) + 1;
+		switch(r)
+		{
+			case 1:
+				tempX = 0;
+				tempY = -1;
+				break;
+			case 2:
+				tempX = 0;
+				tempY = 1;
+				break;
+			case 3:
+				tempX = -1;
+				tempY = 0;
+				break;
+			case 4:
+				tempX = 1;
+				tempY = 0;
+				break;
+		}
+		if((*x == tempX) && (*y == tempY))
+			continue;
+		else
+		{
+			*x = tempX;
+			*y = tempY;
 			break;
-		case 2:
-			*x = 0;
-			*y = 1;
-			break;
-		case 3:
-			*x = -1;
-			*y = 0;
-			break;
-		case 4:
-			*x = 1;
-			*y = 0;
-			break;
+		}
 	}
 }
 void initializeMonsters(Monster mon[], char a[][26], int numMonsters)
