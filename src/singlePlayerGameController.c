@@ -141,7 +141,7 @@ int singlePlayerGameEngine(PacMan *p1, char *fileName)
     char keypress;              //userinput from keyboard
     int winx, winy;
     Fruit f[20][26];
-    
+
     pthread_t monsterThread;
     int monsterThreadRet;
     threadData threadData;
@@ -161,10 +161,16 @@ int singlePlayerGameEngine(PacMan *p1, char *fileName)
 
     Monster mon[gb.numMonster];
     initializeMonsters(mon, gb.map, gb.numMonster);
-    
+
     threadData.pacPointer = p1;
     threadData.gbPointer = &gb;
     threadData.monPointer = mon;
+
+   //display number of lives
+   displayLives(p1, score);
+
+   //diplay level
+   displayLevel(&gb, score);
 
 do{
     keypress = startGame(p1, mon, &gb, f, gameArea, score); //display gameboard and wait for input
@@ -173,13 +179,36 @@ do{
     nodelay(gameArea, TRUE);        //once input recived turn off delay from keyboard
     monsterThreadRet = pthread_create(&monsterThread, NULL, moveMonster, (void*) &threadData);
     do{
+	int i=0;
+
         movePacman(p1, gb.wall, gb.map);
-        eatFruit(p1->x_position,p1->y_position, p1->score, gb.numFruit1, f);
+	i=eatFruit(p1->x_position,p1->y_position,&p1->score, f);
+		if(i==1)
+		{
+			eatFruit1(&gb.numFruit1);
+		}
+
+		if(i==2)
+		{
+			eatFruit2(&gb.numFruit2);
+		}
+
+		if(i==3)
+		{
+			eatFruit3(&gb.numFruit3);
+		}
+
+		if(i==4)
+		{
+			eatFruit4(&gb.numFruit4);
+		}
+
         draw_borders(gameArea);
         draw_borders(score);
         displayBoard(&gb, gameArea);
         displayFruit(f, gameArea);
         displayPacman(p1, gameArea);
+	displayScore(p1, score);
 	displayMonsters(mon, gb.numMonster, gameArea);
         wnoutrefresh(gameArea);
         wnoutrefresh(score);
@@ -197,6 +226,7 @@ do{
 
     pthread_cancel(monsterThread);
 }while(0 != p1->quit && gb.numFruit1 > 0);
+
     delwin(gameArea);
     delwin(score);
     return 1;
