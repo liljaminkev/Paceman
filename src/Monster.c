@@ -6,7 +6,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-#define MAGIC 5
+#define MAGIC 7
 #define M_SPEED 200000 //Lower this value, the faster the monsters will move
 void randomDirection(int *, int *);
 
@@ -31,11 +31,20 @@ void *moveMonster(void *t)
 		{
 			y_next = mon[i].y_position + mon[i].y_direction;
 			x_next = mon[i].x_position + mon[i].x_direction;
-			if((gb->map[y_next][x_next] == gb->wall) || (y_next == -1) || (y_next == 18) || (x_next == -1) || (x_next == 26))
+			if(gb->map[y_next][x_next] == gb->wall)
 			{
 				randomDirection(&(mon[i].x_direction), &(mon[i].y_direction));
 				continue;
 			}
+			if(y_next == -1)
+				y_next = 17;
+			else if(y_next == 18)
+				y_next = 0;
+			else if(x_next == -1)
+				x_next = 25;
+			else if(x_next == 26)
+				x_next = 0;
+			
 			if(magicNum == 0)
 			{
 				randomDirection(&(mon[i].x_direction), &(mon[i].y_direction));
