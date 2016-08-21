@@ -131,6 +131,8 @@ void startGameMenu()
         char mesg[]="Enter your choice: ";
         char choice;
         mvprintw(10,3, "%s", mesg);
+        mvprintw(10,4, "%c",choice);
+
         choice = getch();
 		noecho();
 		endwin();
@@ -150,6 +152,7 @@ void startGameMenu()
             break;
 
             case '4':
+            mainMenu();
             break;
 
             default:
@@ -385,7 +388,6 @@ void startGameMenu()
 
     void highScore()
     {
-        ;
         clear();
         //mvprintw(4,3, "High Score");
         // Include code to implement view highscore
@@ -404,20 +406,32 @@ void startGameMenu()
         mvprintw(8, 3, "Press 1 to quit   ");
         mvprintw(9, 3, "Press 2 to go back to main menu   ");
 
-        char str[80];
-        getstr(str);
-        int numbr = atoi(str);
-        if (numbr == 1)
+        //char str[80];
+        //getstr(str);
+         int numbr;
+        //noecho();
+        numbr = getch();
+        do
         {
-            system("pause");
-        }
-        else if (numbr == 2)
-        {
+            if (numbr == 49)
+            {
+            //system("pause");
+            exit(0);
+            break;
+            }
+            else if (numbr == 50)
+            {
             mainMenu();
-        }
-        else
-        {
+            break;
+            }
+            else
+            {
             mvprintw(11, 3, "Press enter a valid input   ");
+            numbr = getch();
+            }
         }
+        while(1);
+        //clear();
+        //endwin();
 
     }
