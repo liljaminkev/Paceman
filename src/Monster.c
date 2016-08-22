@@ -6,7 +6,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-#define MAGIC 5
+#define MAGIC 7
 #define M_SPEED 200000 //Lower this value, the faster the monsters will move
 void randomDirection(int *, int *);
 
@@ -31,11 +31,20 @@ void *moveMonster(void *t)
 		{
 			y_next = mon[i].y_position + mon[i].y_direction;
 			x_next = mon[i].x_position + mon[i].x_direction;
-			if((gb->map[y_next][x_next] == gb->wall) || (y_next == -1) || (y_next == 18) || (x_next == -1) || (x_next == 26))
+			if(gb->map[y_next][x_next] == gb->wall)
 			{
 				randomDirection(&(mon[i].x_direction), &(mon[i].y_direction));
 				continue;
 			}
+			if(y_next == -1)
+				y_next = 17;
+			else if(y_next == 18)
+				y_next = 0;
+			else if(x_next == -1)
+				x_next = 25;
+			else if(x_next == 26)
+				x_next = 0;
+			
 			if(magicNum == 0)
 			{
 				randomDirection(&(mon[i].x_direction), &(mon[i].y_direction));
@@ -72,26 +81,37 @@ void monsterRespawn(Monster *mon, int numMonsters)
 }
 void randomDirection(int *x, int *y)
 {
-	int r;
-	r = (rand()%4) + 1;
-	switch(r)
+	int r, tempX, tempY;
+	while(1)
 	{
-		case 1:
-			*x = 0;
-			*y = -1;
+		r = (rand()%4) + 1;
+		switch(r)
+		{
+			case 1:
+				tempX = 0;
+				tempY = -1;
+				break;
+			case 2:
+				tempX = 0;
+				tempY = 1;
+				break;
+			case 3:
+				tempX = -1;
+				tempY = 0;
+				break;
+			case 4:
+				tempX = 1;
+				tempY = 0;
+				break;
+		}
+		if((*x == tempX) && (*y == tempY))
+			continue;
+		else
+		{
+			*x = tempX;
+			*y = tempY;
 			break;
-		case 2:
-			*x = 0;
-			*y = 1;
-			break;
-		case 3:
-			*x = -1;
-			*y = 0;
-			break;
-		case 4:
-			*x = 1;
-			*y = 0;
-			break;
+		}
 	}
 }
 void initializeMonsters(Monster mon[], char a[][26], int numMonsters)
