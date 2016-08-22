@@ -431,7 +431,7 @@ void startGameMenu()
             }
         }
         while(1);
-        //clear();
-        //endwin();
+        clear();
+        endwin();
 
     }

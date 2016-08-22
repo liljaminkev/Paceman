@@ -31,11 +31,6 @@ void draw_borders(WINDOW *screen) {
 void gameBoardInitialize(GameBoard *a)
 {
     //used to zero out a game board instance
-     a->wall = '3';
-     a->fruit[0] = '-';
-     a->fruit[1] = '*';
-     a->fruit[2] = '&';
-     a->fruit[3] = '$';
      a->numFruit1 = 0; //number of first fruit on level
      a->numFruit2 = 0; //number of second
      a->numFruit3 = 0; //number of thrid
@@ -88,6 +83,7 @@ int gameBoardLoad(GameBoard *gameboard, char fileName[])
 
     //get wall
     fgets(str, NUMCHAR, fp);
+    numRead = numBytesRead(fp);
 
     if(fp)
     {
