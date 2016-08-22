@@ -68,7 +68,32 @@ int singlePlayerGameController()
         else if (exitCondition == -1 && (player1.lives > 0))
         {
             clear();
-            mvprintw(0, 0, "winner");
+            //mvprintw(0, 0, "winner");
+            mvprintw(3,5,"              ___                                         _"); 
+            mvprintw(4,5,"             / _ \\                                       | |");
+            mvprintw(5,5,"            / /_\\ \\_      _____  ___  ___  _ __ ___   ___| |");
+            mvprintw(6,5,"            |  _  \\ \\ /\\ / / _ \\/ __|/ _ \\| '_ ` _ \\ / _ \\ |");
+            mvprintw(7,5,"            | | | |\\ V  V /  __/\\__ \\ (_) | | | | | |  __/_|");
+            mvprintw(8,5,"            \\_| |_/ \\_/\\_/ \\___||___/\\___/|_| |_| |_|\\___(_)");
+                                                
+
+            mvprintw(11,5,"                              OOOOOOOOOOOO");
+            mvprintw(12,5,"                           OOOOOOOOOOOOOOOOOOO");
+            mvprintw(13,5,"                        OOOOOO  OOOOOOOOO  OOOOOO");
+            mvprintw(14,5,"                      OOOOOO      OOOOO      OOOOOO");
+            mvprintw(15,5,"                    OOOOOOOO  #   OOOOO  #   OOOOOOOO");
+            mvprintw(16,5,"                   OOOOOOOOOO    OOOOOOO    OOOOOOOOOO");
+            mvprintw(17,5,"                  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            mvprintw(18,5,"                  OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            mvprintw(19,5,"                  OOOO  OOOOOOOOOOOOOOOOOOOOOOOOO  OOOO");
+            mvprintw(20,5,"                   OOOO  OOOOOOOOOOOOOOOOOOOOOOO  OOOO");
+            mvprintw(21,5,"                    OOOO   OOOOOOOOOOOOOOOOOOOO  OOOO");
+            mvprintw(22,5,"                      OOOOO   OOOOOOOOOOOOOOO   OOOO");
+            mvprintw(23,5,"                        OOOOOO   OOOOOOOOO   OOOOOO");
+            mvprintw(24,5,"                           OOOOOO         OOOOOO");
+            mvprintw(25,5,"                               OOOOOOOOOOOO");
+
+            mvprintw(30,1,"Press any key to return to main menu ");
             refresh();
             getch();
         }
@@ -82,7 +107,35 @@ int singlePlayerGameController()
         else if (player1.lives == 0)
         {
             clear();
-            mvprintw(0, 0, "lose");
+            //mvprintw(0, 0, "lose");
+            mvprintw(2,5,"                                        _ ");
+            mvprintw(3,5,"                            ___ _ __ __| |");
+            mvprintw(4,5,"                           / _ \\ '_ (_-<_|");
+            mvprintw(5,5,"                           \\___/ .__/__(_)");
+            mvprintw(6,5,"                               |_|        ");
+            mvprintw(7,5,"  ___      _   _             _         _                  _     _   _           _ ");
+            mvprintw(8,5," | _ ) ___| |_| |_ ___ _ _  | |_  _ __| |__  _ _  _____ _| |_  | |_(_)_ __  ___| |");
+            mvprintw(9,5," | _ \\/ -_)  _|  _/ -_) '_| | | || / _| / / | ' \\/ -_) \\ /  _| |  _| | '  \\/ -_)_|");
+            mvprintw(10,5," |___/\\___|\\__|\\__\\___|_|   |_|\\_,_\\__|_\\_\\ |_||_\\___/_\\_\\__|  \\__|_|_|_|_\\___(_)");
+                                                
+
+            mvprintw(14,5,"                               OOOOOOOOOOOOO");
+            mvprintw(15,5,"                            OOOOOOOOOOOOOOOOOOO");
+            mvprintw(16,5,"                         OOOOOO  OOOOOOOOO  OOOOOO");
+            mvprintw(17,5,"                       OOOOOO      OOOOO      OOOOOO");
+            mvprintw(18,5,"                     OOOOOOOO  #   OOOOO  #   OOOOOOOO");
+            mvprintw(19,5,"                    OOOOOOOOOO    OOOOOOO    OOOOOOOOOO");
+            mvprintw(20,5,"                   OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            mvprintw(21,5,"                   OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            mvprintw(22,5,"                   OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            mvprintw(23,5,"                   OOOOOOOOOOOOOO           OOOOOOOOOOOO");
+            mvprintw(24,5,"                    OOOOOOOOOOO   OOOOOOOOO   OOOOOOOOO");
+            mvprintw(25,5,"                      OOOOOOOO  OOOOOOOOOOOOO  OOOOOOO");
+            mvprintw(26,5,"                        OOOOOO OOOOOOOOOOOOOOO OOOOOO");
+            mvprintw(27,5,"                         OOOOOOOOOOOOOOOOOOOOOOOOOO");
+            mvprintw(28,5,"                            OOOOOOOOOOOOOOOOOOOO");
+
+            mvprintw(32,1,"Press any key to return to main menu");
             refresh();
             getch();
         }
