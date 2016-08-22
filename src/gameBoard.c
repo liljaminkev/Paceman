@@ -44,6 +44,14 @@ void gameBoardInitialize(GameBoard *a)
      a->numMonster = 0;    //number of monsters
      a->pause_state = 0;
      a->run_state = 1;
+     a->level=1;
+}
+
+
+void displayLevel(GameBoard *gb, WINDOW *levelBuffer)
+{
+     mvwprintw(levelBuffer, 3,3, "%s", "Level:");
+     mvwprintw(levelBuffer, 3,10, "%d", gb->level);
 }
 
 void displayBoard(GameBoard *gameboard, WINDOW *levelBuffer)
