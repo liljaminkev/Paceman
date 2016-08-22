@@ -399,7 +399,7 @@ void startGameMenu()
 
     }
 
-    void quitPrompt()
+    int quitPrompt()
     {
         clear();
         mvprintw(4, 3, "Are you sure you want to quit?");
@@ -409,29 +409,25 @@ void startGameMenu()
         //char str[80];
         //getstr(str);
          int numbr;
+		 int returnValue;
         //noecho();
         numbr = getch();
         do
         {
-            if (numbr == 49)
+            if (numbr == '1')
             {
-            //system("pause");
-            exit(0);
-            break;
+            	return 0;
             }
-            else if (numbr == 50)
+            else if (numbr == '2')
             {
-            mainMenu();
-            break;
+				return -1;
             }
             else
             {
-            mvprintw(11, 3, "Press enter a valid input   ");
+            mvprintw(11, 3, "Press enter a valid input: ");
             numbr = getch();
             }
         }
         while(1);
-        clear();
-        endwin();
 
     }

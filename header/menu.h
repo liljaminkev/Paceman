@@ -33,5 +33,5 @@ void howToPlay();
 void demoGame();
 void highScore();
 
-void quitPrompt();
+int quitPrompt();
 #endif
