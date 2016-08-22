@@ -20,5 +20,6 @@ char startGame(PacMan *, Monster [], GameBoard*, Fruit [][26], WINDOW *, WINDOW 
 int singlePlayerGameController();
 int quit(char);
 void fileNameCreater(char *, int);
+int pacmanOnMonster(PacMan *, Monster *, int);
 
 #endif
