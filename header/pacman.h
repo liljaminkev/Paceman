@@ -29,5 +29,7 @@ void movePacman(PacMan*, char, char[][26]);
 void getPacmanDirection1(int *, int *, int, char *);
 void getPacmanDirection2(int *, int *, int, char *);
 void displayPacman(PacMan *, WINDOW *);
+void displayScore(PacMan *, WINDOW *);
+void displayLives(PacMan *, WINDOW *);
 
 #endif

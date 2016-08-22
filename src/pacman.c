@@ -24,6 +24,18 @@ void displayPacman(PacMan *player, WINDOW *levelBuffer)
     mvwprintw(levelBuffer, player->y_position+1, player->x_position+1, "%c", player->sprite);
 }
 
+void displayScore(PacMan *player, WINDOW *levelBuffer)
+{
+   mvwprintw(levelBuffer,7,3, "%s", "Score: ");
+   mvwprintw(levelBuffer,7,10, "%d", player->score);
+}
+
+void displayLives(PacMan *player, WINDOW *levelBuffer)
+{
+   mvwprintw(levelBuffer,5,3,"%s", "Lives: ");
+   mvwprintw(levelBuffer,5,10,"%c", player->sprite);
+}
+
 void pacmanInitialize(PacMan *player)
 {
     player->lives = 1;
