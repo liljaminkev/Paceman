@@ -27,6 +27,8 @@ void *moveMonster(void *t)
 	}
 	while(1)
 	{
+		if(gb->pause_state == 1)
+			continue;
 		for(int i = 0; i < gb->numMonster; ++i)
 		{
 			y_next = mon[i].y_position + mon[i].y_direction;
