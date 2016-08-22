@@ -69,13 +69,13 @@ int singlePlayerGameController()
         {
             clear();
             //mvprintw(0, 0, "winner");
-            mvprintw(3,5,"              ___                                         _"); 
+            mvprintw(3,5,"              ___                                         _");
             mvprintw(4,5,"             / _ \\                                       | |");
             mvprintw(5,5,"            / /_\\ \\_      _____  ___  ___  _ __ ___   ___| |");
             mvprintw(6,5,"            |  _  \\ \\ /\\ / / _ \\/ __|/ _ \\| '_ ` _ \\ / _ \\ |");
             mvprintw(7,5,"            | | | |\\ V  V /  __/\\__ \\ (_) | | | | | |  __/_|");
             mvprintw(8,5,"            \\_| |_/ \\_/\\_/ \\___||___/\\___/|_| |_| |_|\\___(_)");
-                                                
+
 
             mvprintw(11,5,"                              OOOOOOOOOOOO");
             mvprintw(12,5,"                           OOOOOOOOOOOOOOOOOOO");
@@ -117,7 +117,7 @@ int singlePlayerGameController()
             mvprintw(8,5," | _ ) ___| |_| |_ ___ _ _  | |_  _ __| |__  _ _  _____ _| |_  | |_(_)_ __  ___| |");
             mvprintw(9,5," | _ \\/ -_)  _|  _/ -_) '_| | | || / _| / / | ' \\/ -_) \\ /  _| |  _| | '  \\/ -_)_|");
             mvprintw(10,5," |___/\\___|\\__|\\__\\___|_|   |_|\\_,_\\__|_\\_\\ |_||_\\___/_\\_\\__|  \\__|_|_|_|_\\___(_)");
-                                                
+
 
             mvprintw(14,5,"                               OOOOOOOOOOOOO");
             mvprintw(15,5,"                            OOOOOOOOOOOOOOOOOOO");
@@ -278,7 +278,12 @@ do{
 
         keypress = wgetch(gameArea);
         getPacmanDirection1(&p1->x_direction, &p1->y_direction, keypress, &p1->sprite);
+
         p1->quit = quit(keypress);
+        gb.pause_state = setPauseState(keypress);
+
+        if(gb.pause_state == 1)
+        pauseGame(&gb.pause_state);
 
 	if(pacmanOnMonster(p1, mon, gb.numMonster) ==  0)
 		break;
@@ -307,4 +312,29 @@ int pacmanOnMonster(PacMan *p1, Monster *mon, int n_monsters)
 			return 0;
 	}
 	return 1;
+}
+
+int setPauseState(char keypress)
+{
+    if (keypress != 'p')
+    return 0;
+    else
+    {
+        return 1;
+    }
+}
+
+void pauseGame(int *pauseState)
+{
+    char k = 0;
+    curs_set(FALSE);
+    WINDOW *pauseWindow = newwin(10, 10, 0, 0);
+    nodelay(pauseWindow, FALSE);
+
+    while(k != 'p')
+    {
+        mvwprintw(pauseWindow, 5,2, "Paused");
+        k = wgetch(pauseWindow);
+    }
+    *pauseState = 0;
 }

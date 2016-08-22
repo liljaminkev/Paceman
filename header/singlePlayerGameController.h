@@ -21,5 +21,8 @@ int singlePlayerGameController();
 int quit(char);
 void fileNameCreater(char *, int);
 int pacmanOnMonster(PacMan *, Monster *, int);
+void pauseGame(int*);
+int setPauseState(char);
+
 
 #endif
