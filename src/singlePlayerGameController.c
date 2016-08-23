@@ -286,10 +286,12 @@ do{
         pauseGame(&gb.pause_state);
 
 	if(pacmanOnMonster(p1, mon, gb.numMonster) ==  0)
+	{
+		--(p1->lives);
 		break;
+	}
 
     }while(0 != p1->quit && gb.numFruit1 > 0);
-    --(p1->lives);
     pthread_cancel(monsterThread);
 
     p1->x_position = p1->x_start;

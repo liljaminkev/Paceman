@@ -20,7 +20,7 @@ int row,col;
 getmaxyx(stdscr,row,col);
 mvprintw(1,2, "%s", mesg);
 getstr(str);
-mvprintw(3, 2, "Hey %s! Lets play PACKMAN", str);
+mvprintw(3, 2, "Hey %s! Let's play PACMAN", str);
 mvprintw(6, 2, "Press any key to continue     ");
 getch();
 clear();
