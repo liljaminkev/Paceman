@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-c -g
+CFLAGS=-c -g -std=c11
 OUTFILE=pacman
 
 MAKEFLAGS += -j 4
